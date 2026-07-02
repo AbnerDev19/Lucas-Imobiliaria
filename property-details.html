@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Luxe Brokerage | Property Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Source+Serif+4:ital,wght@0,500;0,600;1,500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#0b1c30",
+                    "inverse-primary": "#bec6e0",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary-container": "#998153",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c6c6cd",
+                    "on-secondary-container": "#626567",
+                    "background": "#f8f9ff",
+                    "on-secondary-fixed": "#191c1e",
+                    "on-secondary-fixed-variant": "#444749",
+                    "inverse-surface": "#213145",
+                    "surface": "#f8f9ff",
+                    "outline": "#76777d",
+                    "on-primary-container": "#7c839b",
+                    "primary-container": "#131b2e",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-container": "#e0e3e5",
+                    "on-tertiary-fixed": "#261900",
+                    "on-primary-fixed": "#131b2e",
+                    "secondary": "#5c5f61",
+                    "on-background": "#0b1c30",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c4c7c9",
+                    "tertiary": "#000000",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "primary-fixed": "#dae2fd",
+                    "surface-tint": "#565e74",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#45464d",
+                    "secondary-fixed": "#e0e3e5",
+                    "tertiary-fixed": "#fddfaa",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary-fixed-variant": "#57441c",
+                    "tertiary-container": "#261900",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed-dim": "#dfc390",
+                    "surface-variant": "#d3e4fe",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#bec6e0",
+                    "surface-container": "#e5eeff",
+                    "on-error": "#ffffff",
+                    "primary": "#000000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "section-gap": "120px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "body-md": ["Hanken Grotesk"],
+                    "label-md": ["Hanken Grotesk"],
+                    "display-lg": ["\"Source Serif 4\""],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["\"Source Serif 4\""],
+                    "headline-lg": ["\"Source Serif 4\""],
+                    "display-lg-mobile": ["\"Source Serif 4\""],
+                    "headline-md": ["\"Source Serif 4\""]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                    "headline-lg": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["42px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed-dim">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-on-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm h-20 transition-all duration-300">
+<div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center h-full">
+<a href="index.html" class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface cursor-pointer">
+                LUXE BROKERAGE
+            </a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-body-md text-body-md text-primary dark:text-inverse-primary border-b-2 border-primary pb-1 transition-colors duration-200" href="properties.html">Properties</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors duration-200" href="index.html#services">Services</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors duration-200" href="about.html">About</a>
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:text-primary transition-colors duration-200" href="about.html#contact">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button onclick="window.location='about.html#contact'" class="bg-primary text-on-primary px-6 py-2.5 rounded-none font-label-md hover:opacity-90 transition-all duration-300">
+                    List Property
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Photo Gallery (Asymmetric Layout) -->
+<section class="max-w-container-max mx-auto px-margin-desktop mt-8">
+<div class="grid grid-cols-12 grid-rows-2 gap-3 h-[600px] md:h-[720px]">
+<div class="col-span-12 md:col-span-8 row-span-2 relative overflow-hidden group cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sprawling contemporary architectural masterpiece with floor-to-ceiling glass walls, nestled in a lush hillside landscape. The golden hour sunlight casts warm glows across the clean concrete surfaces and infinity pool. The aesthetic is high-end minimalism with a focus on natural materials like cedar and stone. Professional architectural photography with wide-angle perspective and extreme clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_0onuxoOXc25QBKeMIsMK5XL1b-A83JH0A_JltHSO1S8cuZmYiAB5rgIGv6jzxRt2aRS3oSoQJwMS4wM3d4bE5oRldKEipcllxm1uNZEkdOc7AFwHdIF18ihGcwG_pLO8iO3YbPznfWC3T2R1cSFRbHZoGP9keMb4b2z0In5yNkE8StLkr69I9XH3ZYMMyx0JRTv93-RR-SsvE1bQ04-GmECkmieb736Rql7MDyzxdcQrDLTtj3sh"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</div>
+<div class="hidden md:block col-span-4 row-span-1 relative overflow-hidden group cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="The interior of a luxurious modern living room with soaring ceilings and a minimalist fireplace. Soft natural light illuminates a curated selection of designer furniture in neutral tones of cream and slate. High-key lighting creates a bright, airy editorial atmosphere. The space feels expansive yet intimate, reflecting a sophisticated corporate modern design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHw1854sM-kQxwGAA3Gb5NMy0YyAXBYj_VklO0XBV3e80fEbHswNuEW6bbe9dqg9tVyyx7pCgBG_gIkVtoiB8_7v_UpFhAigydc4NEj_9FpLjgXLXLf7I-fJSv-8gc_JlnxvwfT-osGhmiYmhRys5colXSr1y7tpY2F8TQN8Z8QNjCfiLabN9Cgnmvsjtj1wEYpKRxmp6clSQ7d4fk6NMIZBIDZnYagEgMNk6N7GaFZx5DT_i3GLR_"/>
+</div>
+<div class="hidden md:block col-span-2 row-span-1 relative overflow-hidden group cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A detailed shot of a custom-designed chef's kitchen featuring monolithic marble islands and matte black cabinetry. Subdued ambient lighting highlights the texture of the stone and the precision of the hardware. The mood is moody and exclusive, using a palette of deep grays and bright white marble veins. Clean lines and clutter-free surfaces dominate the frame." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUy-rWq8m2EX62OdLooHFY-Desj6-r3iDGHI88CEKKYuWMrhMkXZoG5130K50jsHNdTaP-7ej0Ase9wOahswVQtn3N5dfjHmx7ucjtqbpyF4rcccq8B1fNk1aKomkV4ke2CdmEWFKp98cY1_3Htkv6t0j52iURQpyZsHiLeS23SEWsa4rqeFrpvyvHNFEpS5KQ4Zq-4BfFYrB3K6pXfbCuns3knNIRLamuIIzbCNhG3OZmjnZtnVIg"/>
+</div>
+<div class="hidden md:block col-span-2 row-span-1 relative overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-on-surface/60 flex flex-col items-center justify-center text-on-primary z-10 transition-opacity duration-300 hover:bg-on-surface/40">
+<span class="material-symbols-outlined text-4xl mb-2">grid_view</span>
+<span class="font-label-md">View all 24 photos</span>
+</div>
+<img class="w-full h-full object-cover" data-alt="A serene outdoor patio area featuring minimalist fire pits and sculptural landscaping. The twilight sky is a deep indigo, contrasting with the warm amber glow of the fire. The composition uses leading lines and soft shadows to create a sense of peace and extreme privacy. A high-end real estate aesthetic for an ultra-luxury brokerage property listing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClLZGAqqwHh1Qbco922KrHkA8cmfN2OAqPMDaFo_RivcTexwukAktFCQRB5Cr13ES4sXy0uhcJxpkBXr2ANnZg5NUg6dZ0WsUqQ1ZVDt2vXgOvI8OKrZJghisKCjVa7huWysiJSr7xZqw0pPjSLJT14pWLaBjh9_dJi0Lq7C6xf6hLBXJQszIK8IkVXeYyk81WyOeH2ENN-TWtLVK-fAp8EDWSKZKv7DzKqn2ZHEkqQK3Y65PQVP17"/>
+</div>
+</div>
+</section>
+<!-- Main Content Area -->
+<section class="max-w-container-max mx-auto px-margin-desktop mt-12 grid grid-cols-12 gap-gutter">
+<!-- Left Column: Details -->
+<div class="col-span-12 lg:col-span-8">
+<!-- Header Info -->
+<div class="border-b border-outline-variant/30 pb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg mb-2">The Obsidian Pavilion</h1>
+<p class="font-body-lg text-body-lg text-secondary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">location_on</span>
+                                1242 Skyline Drive, Los Angeles, CA 90210
+                            </p>
+</div>
+<div class="text-right">
+<span class="font-label-md text-primary tracking-widest block mb-1">OFFERED AT</span>
+<span class="font-display-lg text-display-lg leading-none">$18,450,000</span>
+</div>
+</div>
+<div class="flex gap-10 mt-10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">bed</span>
+<div class="flex flex-col">
+<span class="font-headline-md leading-none">6</span>
+<span class="font-label-md text-secondary text-[11px]">BEDS</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">bathtub</span>
+<div class="flex flex-col">
+<span class="font-headline-md leading-none">8.5</span>
+<span class="font-label-md text-secondary text-[11px]">BATHS</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">square_foot</span>
+<div class="flex flex-col">
+<span class="font-headline-md leading-none">12,400</span>
+<span class="font-label-md text-secondary text-[11px]">SQ FT</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">explore</span>
+<div class="flex flex-col">
+<span class="font-headline-md leading-none">1.2</span>
+<span class="font-label-md text-secondary text-[11px]">ACRES</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tabs Navigation -->
+<div class="mt-12">
+<div class="flex border-b border-outline-variant/30 gap-8 overflow-x-auto hide-scrollbar">
+<button class="tab-btn active pb-4 font-label-md border-b-2 border-primary text-primary transition-all" id="tab-btn-overview" onclick="switchTab('overview')">OVERVIEW</button>
+<button class="tab-btn pb-4 font-label-md border-b-2 border-transparent text-secondary hover:text-primary transition-all" id="tab-btn-features" onclick="switchTab('features')">FEATURES</button>
+<button class="tab-btn pb-4 font-label-md border-b-2 border-transparent text-secondary hover:text-primary transition-all" id="tab-btn-location" onclick="switchTab('location')">LOCATION</button>
+</div>
+<!-- Tab Content: Overview -->
+<div class="tab-content mt-8 block" id="tab-overview">
+<h3 class="font-headline-md mb-6">A Masterpiece of Modern Architecture</h3>
+<div class="font-body-lg text-body-lg text-secondary space-y-6 max-w-3xl leading-relaxed">
+<p>Perched atop the most coveted ridge in Bel Air, The Obsidian Pavilion is a tour de force of contemporary design. Conceived by award-winning architects, the residence seamlessly integrates the indoor and outdoor worlds through monolithic structural elements and expansive glass apertures.</p>
+<p>The interior narrative is one of quiet luxury, where every surface—from the honed basalt floors to the custom rift-sawn oak cabinetry—has been selected for its tactile quality and enduring aesthetic. The open-plan living areas flow effortlessly toward the horizon, anchored by an infinity-edge pool that appears to spill directly into the Pacific Ocean.</p>
+</div>
+</div>
+<!-- Tab Content: Features -->
+<div class="tab-content mt-8 hidden" id="tab-features">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+<div class="space-y-4">
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-secondary">Year Built</span>
+<span class="font-medium">2023</span>
+</div>
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-secondary">Property Type</span>
+<span class="font-medium">Single Family</span>
+</div>
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-secondary">Parking</span>
+<span class="font-medium">8 Car Garage</span>
+</div>
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-secondary">Cooling</span>
+<span class="font-medium">Multi-Zone Central</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-none flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">pool</span>
+<span class="font-label-md">Infinity Pool</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-none flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+<span class="font-label-md">Wellness Center</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-none flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">movie</span>
+<span class="font-label-md">Home Cinema</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-none flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">wine_bar</span>
+<span class="font-label-md">Wine Cellar</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab Content: Location -->
+<div class="tab-content mt-8 hidden" id="tab-location">
+<div class="bg-surface-container p-1 h-96 relative group overflow-hidden">
+<div class="w-full h-full bg-surface-dim flex items-center justify-center" data-location="Los Angeles, CA" style="">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-primary animate-bounce mb-2">location_on</span>
+<p class="font-label-md text-secondary">Interactive Map Loading...</p>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 bg-surface px-4 py-2 shadow-sm border border-outline-variant/30">
+<p class="font-label-md text-[11px] text-secondary">NEIGHBORHOOD</p>
+<p class="font-medium">Platinum Triangle, Bel Air</p>
+</div>
+</div>
+<div class="mt-6 grid grid-cols-3 gap-4">
+<div class="border border-outline-variant/30 p-4">
+<p class="text-[11px] font-label-md text-secondary mb-1">WALK SCORE</p>
+<p class="font-headline-md">12</p>
+</div>
+<div class="border border-outline-variant/30 p-4">
+<p class="text-[11px] font-label-md text-secondary mb-1">TRANSIT SCORE</p>
+<p class="font-headline-md">24</p>
+</div>
+<div class="border border-outline-variant/30 p-4">
+<p class="text-[11px] font-label-md text-secondary mb-1">SCHOOL RATING</p>
+<p class="font-headline-md">9/10</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sticky Form -->
+<div class="col-span-12 lg:col-span-4">
+<div class="sticky top-28 space-y-gutter">
+<!-- Agent Card -->
+<div class="bg-white border border-outline-variant/30 p-8 shadow-sm">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-16 h-16 overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A portrait of a sophisticated real estate professional in a tailored navy blazer, standing against a clean architectural background. The person radiates confidence and expertise, with soft studio lighting that creates a welcoming yet authoritative presence. High-end professional headshot for an elite luxury brokerage agent." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOnyq-dIlJ59lVpImT_BiLuTxf7-znfl7soif6TBZuWFG_QR2rrq-SCdpRJ14AVIXStfHEeLMA2Wvb4XIT7eLQMAH4PEbhKYCZ7XR04pZeE0RADTkSggIj6h4TwcI1t590NwxNeOKavpSJUBn6VD0o9xW0MyFxJ98ykUjzoz7BgnHBN09JeicA9TRMLChAgi12CNLkXJyZnOSW9z1SJrR3QilescfY3TQDI2FVdEbuDLaFJWrKMv0U"/>
+</div>
+<div>
+<h4 class="font-headline-md text-lg leading-tight">Alexander Sterling</h4>
+<p class="font-label-md text-secondary text-xs mt-1">Founding Partner, Luxe Brokerage</p>
+</div>
+</div>
+<form class="space-y-4" onsubmit="event.preventDefault(); alert('Solicitação enviada! Um de nossos agentes entrará em contato em breve.'); this.reset();">
+<div class="space-y-1">
+<label class="font-label-md text-xs text-secondary">FULL NAME</label>
+<input class="w-full border-outline-variant/40 bg-surface focus:ring-0 focus:border-primary px-4 py-3 text-sm placeholder:text-outline-variant" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-xs text-secondary">EMAIL ADDRESS</label>
+<input class="w-full border-outline-variant/40 bg-surface focus:ring-0 focus:border-primary px-4 py-3 text-sm placeholder:text-outline-variant" placeholder="john@example.com" type="email"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-xs text-secondary">MESSAGE</label>
+<textarea class="w-full border-outline-variant/40 bg-surface focus:ring-0 focus:border-primary px-4 py-3 text-sm placeholder:text-outline-variant" placeholder="I am interested in scheduling a private tour..." rows="3"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 font-label-md hover:bg-on-surface transition-colors" type="submit">
+                                INQUIRE ABOUT PROPERTY
+                            </button>
+</form>
+<div class="mt-6 flex flex-col items-center gap-3">
+<button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors text-sm font-label-md">
+<span class="material-symbols-outlined text-lg">phone</span>
+                                +1 (310) 555-0198
+                            </button>
+<div class="w-full h-[1px] bg-outline-variant/20 my-2"></div>
+<button class="flex items-center gap-2 text-secondary hover:text-primary transition-colors text-sm font-label-md">
+<span class="material-symbols-outlined text-lg">schedule</span>
+                                REQUEST PRIVATE VIEWING
+                            </button>
+</div>
+</div>
+<!-- Mortgage Quick Calc -->
+<div class="bg-primary-container p-8 text-on-primary">
+<h4 class="font-label-md mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">calculate</span>
+                            ESTIMATED PAYMENT
+                        </h4>
+<p class="font-display-lg text-3xl mb-1">$84,120 <span class="text-sm font-body-md text-on-primary-container">/mo</span></p>
+<p class="text-xs text-on-primary-container mb-6">Based on 20% down, 30yr fixed at 6.4%</p>
+<button class="w-full border border-on-primary/30 text-on-primary py-3 font-label-md hover:bg-on-primary hover:text-primary transition-all">
+                            VIEW FULL CALCULATION
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Related Section Spacing -->
+<div class="h-section-gap"></div>
+</main>
+<!-- Footer -->
+<footer class="bg-on-surface dark:bg-surface-container-lowest w-full py-16">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter text-inverse-on-surface dark:text-on-surface">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-md text-headline-md text-inverse-on-surface dark:text-on-surface mb-6">LUXE BROKERAGE</div>
+<p class="font-body-md text-outline-variant text-sm leading-relaxed">The pinnacle of luxury real estate representation. We specialize in off-market assets and iconic architectural residences worldwide.</p>
+</div>
+<div class="col-span-1">
+<h5 class="font-label-md text-tertiary-fixed mb-6">OFFICES</h5>
+<ul class="space-y-3 font-body-md text-outline-variant text-sm">
+<li class="hover:text-on-primary cursor-pointer transition-colors">Beverly Hills</li>
+<li class="hover:text-on-primary cursor-pointer transition-colors">Aspen</li>
+<li class="hover:text-on-primary cursor-pointer transition-colors">New York City</li>
+<li class="hover:text-on-primary cursor-pointer transition-colors">Miami</li>
+</ul>
+</div>
+<div class="col-span-1">
+<h5 class="font-label-md text-tertiary-fixed mb-6">RESOURCES</h5>
+<ul class="space-y-3 font-body-md text-outline-variant text-sm">
+<li class="hover:text-on-primary cursor-pointer transition-colors">Market Report 2024</li>
+<li class="hover:text-on-primary cursor-pointer transition-colors">Seller Guide</li>
+<li class="hover:text-on-primary cursor-pointer transition-colors">Investment Portfolios</li>
+<li class="hover:text-on-primary cursor-pointer transition-colors">Careers</li>
+</ul>
+</div>
+<div class="col-span-1">
+<h5 class="font-label-md text-tertiary-fixed mb-6">NEWSLETTER</h5>
+<div class="flex border-b border-outline-variant/30 pb-2">
+<input class="bg-transparent border-none focus:ring-0 w-full text-sm placeholder:text-outline-variant/50" placeholder="Email Address" type="email"/>
+<button class="material-symbols-outlined text-tertiary-fixed">arrow_forward</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop mt-16 pt-8 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="font-body-md text-body-md text-outline-variant text-xs">© 2024 Luxe Brokerage Group. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-outline-variant hover:text-on-primary text-xs hover:underline underline-offset-4 transition-all" href="#">Privacy Policy</a>
+<a class="text-outline-variant hover:text-on-primary text-xs hover:underline underline-offset-4 transition-all" href="#">Terms of Service</a>
+<a class="text-outline-variant hover:text-on-primary text-xs hover:underline underline-offset-4 transition-all" href="#">Accessibility</a>
+<a class="text-outline-variant hover:text-on-primary text-xs hover:underline underline-offset-4 transition-all" href="#">Cookie Settings</a>
+</div>
+</div>
+</footer>
+<script>
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+            
+            // Remove active styles from buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-primary', 'text-primary');
+                btn.classList.add('border-transparent', 'text-secondary');
+            });
+
+            // Show selected content
+            const activeContent = document.getElementById(`tab-${tabId}`);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+                activeContent.classList.add('block');
+            }
+
+            // Set active button style
+            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.add('border-primary', 'text-primary');
+                activeBtn.classList.remove('border-transparent', 'text-secondary');
+            }
+        }
+
+        // Lightweight scroll effect for the header
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('h-16', 'shadow-md');
+                nav.classList.remove('h-20', 'shadow-sm');
+            } else {
+                nav.classList.add('h-20', 'shadow-sm');
+                nav.classList.remove('h-16', 'shadow-md');
+            }
+        });
+    </script>
+</body></html>
