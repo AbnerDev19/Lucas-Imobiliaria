@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Imóveis | Lucas Carvalho</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#0a0a0a",
+                        surface: "#1a1a1a",
+                        primary: "#ffffff",
+                        secondary: "#9ca3af",
+                        outline: "#333333"
+                    },
+                    fontFamily: {
+                        serif: ["Playfair Display", "serif"],
+                        sans: ["Plus Jakarta Sans", "sans-serif"],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-background text-primary font-sans antialiased">
+
+    <!-- Header Transparente -->
+    <header class="w-full z-50 flex justify-between items-center px-8 py-5 border-b border-outline">
+        <a href="index.html" class="font-serif text-2xl font-bold tracking-tight text-white">LUCAS CARVALHO</a>
+        <nav class="hidden md:flex gap-8 items-center text-sm font-bold tracking-widest uppercase">
+            <a href="imoveis.html" class="border-b-2 border-white pb-1">Listings</a>
+            <a href="sobre.html" class="text-secondary hover:text-white transition-colors">About</a>
+            <a href="#" class="text-secondary hover:text-white transition-colors">Services</a>
+            <a href="sobre.html" class="text-secondary hover:text-white transition-colors">Contact</a>
+        </nav>
+        <a href="sobre.html" class="hidden md:inline-block bg-white text-background text-xs font-bold px-6 py-3 uppercase tracking-widest hover:bg-gray-200 transition-colors">Schedule a Visit</a>
+    </header>
+
+    <main class="pt-12 px-6 md:px-12 max-w-7xl mx-auto pb-24">
+        <h1 class="text-secondary text-lg mb-8 max-w-2xl">Descubra propriedades exclusivas selecionadas para o padrão de vida mais exigente. Explore opções em bairros premium.</h1>
+
+        <!-- Filtro -->
+        <div class="bg-surface p-6 flex flex-col md:flex-row gap-4 mb-16 items-end">
+            <div class="flex-1 w-full">
+                <label class="block text-xs font-bold text-secondary uppercase mb-2">Localização</label>
+                <div class="flex items-center border border-outline px-4 py-3 bg-background">
+                    <span class="material-symbols-outlined text-secondary mr-2 text-[20px]">location_on</span>
+                    <input type="text" placeholder="Bairro ou Cidade" class="bg-transparent w-full outline-none text-white placeholder-secondary">
+                </div>
+            </div>
+            <div class="flex-1 w-full">
+                <label class="block text-xs font-bold text-secondary uppercase mb-2">Tipo de Imóvel</label>
+                <div class="flex items-center border border-outline px-4 py-3 bg-background">
+                    <span class="material-symbols-outlined text-secondary mr-2 text-[20px]">home</span>
+                    <select class="bg-transparent w-full outline-none text-white appearance-none cursor-pointer">
+                        <option class="text-background">Todos os Tipos</option>
+                        <option class="text-background">Casa</option>
+                        <option class="text-background">Apartamento</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex-1 w-full">
+                <label class="block text-xs font-bold text-secondary uppercase mb-2">Faixa de Preço</label>
+                <div class="flex items-center border border-outline px-4 py-3 bg-background">
+                    <span class="material-symbols-outlined text-secondary mr-2 text-[20px]">payments</span>
+                    <select class="bg-transparent w-full outline-none text-white appearance-none cursor-pointer">
+                        <option class="text-background">Qualquer Valor</option>
+                        <option class="text-background">Acima de 5M</option>
+                        <option class="text-background">Acima de 10M</option>
+                    </select>
+                </div>
+            </div>
+            <button class="bg-white text-background font-bold text-xs uppercase px-8 py-4 tracking-widest hover:bg-gray-200 transition-colors w-full md:w-auto flex items-center justify-center gap-2 h-[50px]">
+                <span class="material-symbols-outlined text-[18px]">search</span> Filtrar
+            </button>
+        </div>
+
+        <!-- Grid de Resultados -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- Item 1 -->
+            <a href="detalhe.html" class="group block">
+                <div class="relative overflow-hidden mb-4 aspect-[4/3] bg-surface">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute top-4 left-4 bg-white text-background text-xs font-bold px-3 py-1 uppercase tracking-widest">Cobertura</div>
+                </div>
+                <p class="text-sm text-secondary mb-3 flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">location_on</span> Jardins, São Paulo</p>
+                <div class="border-t border-outline pt-3 flex gap-4 text-sm text-secondary items-center">
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 450m²</span>
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bed</span> 4</span>
+                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">directions_car</span> 5</span>
+                </div>
+            </a>
+            <!-- Repita para demais itens -->
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,414 +1,285 @@
 <!DOCTYPE html>
+<html lang="pt-BR">
 
-<html class="scroll-smooth" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>LUXE BROKERAGE | High-End Real Estate</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lucas Carvalho | Consultoria Imobiliária</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <!-- CSS Customizado -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Configuração do Tailwind (Mantido no HTML para o CDN funcionar corretamente) -->
+    <script>
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
-                    "colors": {
-                        "on-surface": "#0b1c30",
-                        "inverse-primary": "#bec6e0",
-                        "on-error-container": "#93000a",
-                        "inverse-on-surface": "#eaf1ff",
-                        "surface-dim": "#cbdbf5",
-                        "on-tertiary-container": "#998153",
-                        "surface-container-lowest": "#ffffff",
-                        "outline-variant": "#c6c6cd",
-                        "on-secondary-container": "#626567",
-                        "background": "#f8f9ff",
-                        "on-secondary-fixed": "#191c1e",
-                        "on-secondary-fixed-variant": "#444749",
-                        "inverse-surface": "#213145",
-                        "surface": "#f8f9ff",
-                        "outline": "#76777d",
-                        "on-primary-container": "#7c839b",
-                        "primary-container": "#131b2e",
-                        "surface-container-highest": "#d3e4fe",
-                        "secondary-container": "#e0e3e5",
-                        "on-tertiary-fixed": "#261900",
-                        "on-primary-fixed": "#131b2e",
-                        "secondary": "#5c5f61",
-                        "on-background": "#0b1c30",
-                        "error-container": "#ffdad6",
-                        "on-primary-fixed-variant": "#3f465c",
-                        "error": "#ba1a1a",
-                        "secondary-fixed-dim": "#c4c7c9",
-                        "tertiary": "#000000",
-                        "on-primary": "#ffffff",
-                        "surface-container-low": "#eff4ff",
-                        "primary-fixed": "#dae2fd",
-                        "surface-tint": "#565e74",
-                        "on-tertiary": "#ffffff",
-                        "on-surface-variant": "#45464d",
-                        "secondary-fixed": "#e0e3e5",
-                        "tertiary-fixed": "#fddfaa",
-                        "surface-container-high": "#dce9ff",
-                        "on-tertiary-fixed-variant": "#57441c",
-                        "tertiary-container": "#261900",
-                        "surface-bright": "#f8f9ff",
-                        "tertiary-fixed-dim": "#dfc390",
-                        "surface-variant": "#d3e4fe",
-                        "on-secondary": "#ffffff",
-                        "primary-fixed-dim": "#bec6e0",
-                        "surface-container": "#e5eeff",
-                        "on-error": "#ffffff",
-                        "primary": "#000000"
+                    colors: {
+                        background: "#ffffff",
+                        surface: "#f9fafb",
+                        primary: "#000000",
+                        secondary: "#525252",
+                        outline: "#e5e5e5"
                     },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
+                    fontFamily: {
+                        serif: ["Playfair Display", "serif"],
+                        sans: ["Plus Jakarta Sans", "sans-serif"],
                     },
-                    "spacing": {
-                        "margin-mobile": "20px",
-                        "gutter": "24px",
-                        "section-gap": "120px",
-                        "margin-desktop": "64px",
-                        "container-max": "1280px"
-                    },
-                    "fontFamily": {
-                        "body-md": ["Hanken Grotesk"],
-                        "label-md": ["Hanken Grotesk"],
-                        "display-lg": ["\"Source Serif 4\""],
-                        "body-lg": ["Hanken Grotesk"],
-                        "headline-lg-mobile": ["\"Source Serif 4\""],
-                        "headline-lg": ["\"Source Serif 4\""],
-                        "display-lg-mobile": ["\"Source Serif 4\""],
-                        "headline-md": ["\"Source Serif 4\""]
-                    },
-                    "fontSize": {
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                        "display-lg": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
-                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
-                        "headline-lg": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
-                        "display-lg-mobile": ["42px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}]
+                    letterSpacing: {
+                        'widest': '0.15em',
                     }
-                },
-            },
-        }
-    </script>
-<style>
-        .glass-effect {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        .text-stroke {
-            -webkit-text-stroke: 1px currentColor;
-            color: transparent;
-        }
-        body {
-            background-color: #f8f9ff;
-            color: #0b1c30;
-        }
-    </style>
-</head>
-<body class="font-body-md text-body-md overflow-x-hidden">
-<!-- Top Navigation Bar -->
-<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm h-20 transition-all duration-300">
-<div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center h-full">
-<a href="index.html" class="font-headline-md text-headline-md font-bold text-on-surface">LUXE BROKERAGE</a>
-<div class="hidden md:flex gap-8 items-center">
-<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1 transition-colors duration-200" href="properties.html">Properties</a>
-<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="index.html#services">Services</a>
-<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="about.html">About</a>
-<a class="font-body-md text-body-md text-secondary hover:text-primary transition-colors duration-200" href="about.html#contact">Contact</a>
-</div>
-<div class="flex items-center gap-6">
-<button class="material-symbols-outlined text-secondary hover:text-primary transition-colors">search</button>
-<button onclick="window.location='about.html#contact'" class="bg-primary text-on-primary px-6 py-3 font-label-md uppercase tracking-wider text-sm transition-all duration-300 hover:bg-on-surface/90 active:opacity-80">List Property</button>
-</div>
-</div>
-</nav>
-<!-- Hero Section -->
-<header class="relative w-full h-[972px] flex items-center overflow-hidden">
-<div class="absolute inset-0 z-0">
-<div class="w-full h-full bg-cover bg-center transition-transform duration-[10000ms] scale-110 hover:scale-100" data-alt="A wide-angle, high-resolution photograph of a modern glass mansion perched on a cliff overlooking the ocean at sunset. The lighting is golden and warm, casting long shadows across sleek marble terraces. The aesthetic is extremely minimalist and high-end, featuring clean lines and architectural sophistication. The sky is a gradient of deep indigo and soft orange." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUEnydGnx67pEl1o-ePX-O_YDbMONtdV3ye1Aw3jJEKUZtwVKnt6P8y5URJziy9lYsQTeKXruAY44m1-hI29E5kAAuXUaemNFrI3WKxo3DkepJBgaIgtm7J2fbiIxEEhojSOq5c3qTJX5em2biHaf8yow9x_-6ZYJhCWTenQLJEUZBUDgyZmYny_xzerAUa1sAoTvMKrZLGdUj20w79xUy9Y3IwficceOTuUu_VWcQ2A-CLZL_E8np')">
-</div>
-<div class="absolute inset-0 bg-black/30"></div>
-</div>
-<div class="relative z-10 max-w-container-max mx-auto px-margin-desktop w-full text-on-primary">
-<div class="max-w-2xl">
-<span class="font-label-md uppercase tracking-widest text-primary-fixed mb-4 block">Exclusivity Redefined</span>
-<h1 class="font-display-lg text-display-lg mb-8 leading-tight">Extraordinary Estates <br/>For Exceptional Lives</h1>
-<!-- Search Bar Glassmorphism -->
-<div class="glass-effect bg-white/10 p-2 rounded shadow-2xl backdrop-blur-xl border border-white/20">
-<div class="flex flex-col md:flex-row items-stretch bg-surface p-1">
-<!-- Buy/Rent Toggle -->
-<div class="flex items-center px-4 border-r border-outline-variant/30 py-4">
-<select class="bg-transparent font-label-md outline-none cursor-pointer border-none focus:ring-0">
-<option>Buy</option>
-<option>Rent</option>
-</select>
-</div>
-<!-- Location -->
-<div class="flex-grow flex items-center px-6 border-r border-outline-variant/30 py-4">
-<span class="material-symbols-outlined text-secondary mr-3" data-icon="location_on">location_on</span>
-<input class="bg-transparent w-full outline-none border-none focus:ring-0 font-body-md text-on-surface placeholder:text-secondary/60" placeholder="Neighborhood or City" type="text"/>
-</div>
-<!-- Price Range -->
-<div class="flex items-center px-6 border-r border-outline-variant/30 py-4 min-w-[180px]">
-<span class="material-symbols-outlined text-secondary mr-3" data-icon="payments">payments</span>
-<select class="bg-transparent font-body-md outline-none cursor-pointer border-none focus:ring-0 w-full">
-<option>Price Range</option>
-<option>$1M - $5M</option>
-<option>$5M - $10M</option>
-<option>$10M+</option>
-</select>
-</div>
-<!-- Submit -->
-<button class="bg-primary text-on-primary px-10 font-label-md uppercase transition-all hover:bg-on-surface">
-                            Search
-                        </button>
-</div>
-</div>
-</div>
-</div>
-</header>
-<!-- Content Section: Featured Listings -->
-<section class="max-w-container-max mx-auto px-margin-desktop py-section-gap">
-<div class="flex justify-between items-end mb-16">
-<div>
-<h2 class="font-headline-lg text-headline-lg mb-4">The Portfolio</h2>
-<p class="font-body-lg text-body-lg text-secondary max-w-lg">Hand-picked architectural masterpieces from our exclusive global network.</p>
-</div>
-<a class="font-label-md border-b-2 border-primary pb-1 flex items-center gap-2 group" href="properties.html">
-                View All Listings
-                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</a>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-<!-- Property Card 1 -->
-<div class="group cursor-pointer" onclick="window.location='property-details.html'">
-<div class="relative overflow-hidden aspect-[4/5] mb-6 shadow-xl shadow-on-surface/5">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An interior shot of a minimalist living room with floor-to-ceiling windows showing a mountain view. High-end Italian furniture in neutral tones of beige and slate gray is arranged on a large textured rug. The space is flooded with soft daylight, highlighting the clean architectural details and polished concrete floors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8N3dUodC4aetoV_cS3v3kV5ef1XPiTnN99nljoAjKy3pp98gV1RAnE3HyGEwA-RRW9pV_WoQpqYeVAOxLzLB48oDNkDuQrndsTkQ2MuP5l2caBAVdLYUDXYMFCvOprpp8RzByDq7iYMOj6tOWbHJb2Cfa069SoSgnEnu5jGBpfJRCOjAEtVTrtswLFKAVX148BbpYOtki3VbiHKsuB97cA8rYX7eI-Nc8e-fIaWCHqWxVZdPez_0J"/>
-<div class="absolute top-6 left-6 bg-surface/90 px-4 py-1 font-label-md text-xs uppercase tracking-tighter">New Listing</div>
-</div>
-<div class="px-2">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md">Vela Residence</h3>
-<p class="font-label-md text-primary">$12,450,000</p>
-</div>
-<p class="text-secondary mb-6">Palm Jumeirah, Dubai</p>
-<div class="flex items-center gap-6 text-on-surface-variant font-label-md border-t border-outline-variant/30 pt-4">
-<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">bed</span> 5 Beds</div>
-<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">bathtub</span> 6 Baths</div>
-<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">square_foot</span> 8,200 sqft</div>
-</div>
-</div>
-</div>
-<!-- Property Card 2 -->
-<div class="group cursor-pointer lg:mt-12" onclick="window.location='property-details.html'">
-<div class="relative overflow-hidden aspect-[4/5] mb-6 shadow-xl shadow-on-surface/5">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A luxury backyard featuring a negative-edge infinity pool reflecting a stark white modern villa. The area is surrounded by lush tropical vegetation and dark wood decking. In the background, a warm dusk sky creates a serene atmosphere. The overall style is clean, corporate, and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD761TTHm85CSd45UuQ44IfBzttBYSPJVvuYUYVl0Uwh7j26dPxHk9Ah0hEEBNXb74BGWPsrm94G5X4DBOUR1JTihJ52KAQ6zeS6Lc-vG_qNwAQtxzcorpWATnTeeawsev-lx7Km-NNQ5O85LzM7CQdQGbCDqoMgJdGffyag2rm79IwjmZ2SKiGfo13KaOIux80SQ2qRHkaCVuwOEQYBcg1pTuuqvr-rdOIaaoiJaat-7MdkZzZLSd-"/>
-<div class="absolute top-6 left-6 bg-surface/90 px-4 py-1 font-label-md text-xs uppercase tracking-tighter">Exclusive</div>
-</div>
-<div class="px-2">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md">The Courtyard Villa</h3>
-<p class="font-label-md text-primary">$8,900,000</p>
-</div>
-<p class="text-secondary mb-6">Bel Air, Los Angeles</p>
-<div class="flex items-center gap-6 text-on-surface-variant font-label-md border-t border-outline-variant/30 pt-4">
-<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">bed</span> 4 Beds</div>
-<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">bathtub</span> 5 Baths</div>
-<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">square_foot</span> 6,400 sqft</div>
-</div>
-</div>
-</div>
-<!-- Property Card 3 -->
-<div class="group cursor-pointer" onclick="window.location='property-details.html'">
-<div class="relative overflow-hidden aspect-[4/5] mb-6 shadow-xl shadow-on-surface/5">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A penthouse dining room with a double-height ceiling and a sculptural chandelier made of smoked glass. A long dark oak table is set for eight. Beyond the large windows, the city skyline is twinkling at night. The image is crisp, sophisticated, and evokes a feeling of high-wealth urban living." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9Dur_Te4sTq-ZlQE-X_midyBJyhblm45nxtubuT-0LJTJtjso78o9KPDr_oisQ1By6FZnSM5u5Z8He-emNcCcqUL2YFXTqNplerO6GzL5TuZJ_50Nsr7HiUiy6fPfWXx5FAYBK2TU6TvWS_Ue4ODh8bG5Gkn11w9LZPRfV8b9_45RGIY0oxlA3QsHdWYvxaDSaXSeGqBTruy2x_3tsIxpLvPwYV0bKCYkeSJlv7QiPiRXVWwx8S5w"/>
-</div>
-<div class="px-2">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md">Sky Terrace Penthouse</h3>
-<p class="font-label-md text-primary">$21,000,000</p>
-</div>
-<p class="text-secondary mb-6">Madison Avenue, New York</p>
-<div class="flex items-center gap-6 text-on-surface-variant font-label-md border-t border-outline-variant/30 pt-4">
-<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">bed</span> 6 Beds</div>
-<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">bathtub</span> 8 Baths</div>
-<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">square_foot</span> 10,500 sqft</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Services / Values Section (Bento Style) -->
-<section class="bg-on-surface text-on-primary py-section-gap" id="services">
-<div class="max-w-container-max mx-auto px-margin-desktop">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-stretch">
-<div class="lg:col-span-4 flex flex-col justify-center">
-<h2 class="font-headline-lg text-headline-lg mb-8">Unrivaled Expertise. <br/>Seamless Execution.</h2>
-<p class="font-body-lg text-body-lg text-outline-variant mb-12">We provide a bespoke concierge experience that goes beyond the transaction, ensuring every detail of your real estate journey is managed with absolute precision.</p>
-<button class="border border-tertiary-fixed text-tertiary-fixed px-8 py-4 font-label-md uppercase tracking-wider self-start hover:bg-tertiary-fixed hover:text-on-surface transition-all">Our Process</button>
-</div>
-<div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-gutter">
-<div class="bg-white/5 p-12 border border-white/10 hover:bg-white/10 transition-colors group">
-<span class="material-symbols-outlined text-4xl text-tertiary-fixed mb-8 block" style="font-variation-settings: 'FILL' 1;">assured_workload</span>
-<h4 class="font-headline-md text-headline-md mb-4">Investment Strategy</h4>
-<p class="text-outline-variant">Deep market analysis and portfolio optimization for discerning property investors globally.</p>
-</div>
-<div class="bg-white/5 p-12 border border-white/10 hover:bg-white/10 transition-colors">
-<span class="material-symbols-outlined text-4xl text-tertiary-fixed mb-8 block" style="font-variation-settings: 'FILL' 1;">architecture</span>
-<h4 class="font-headline-md text-headline-md mb-4">Architectural Sourcing</h4>
-<p class="text-outline-variant">Access to off-market listings and architectural landmarks before they reach the public.</p>
-</div>
-<div class="bg-white/5 p-12 border border-white/10 hover:bg-white/10 transition-colors">
-<span class="material-symbols-outlined text-4xl text-tertiary-fixed mb-8 block" style="font-variation-settings: 'FILL' 1;">gavel</span>
-<h4 class="font-headline-md text-headline-md mb-4">Legal Advisory</h4>
-<p class="text-outline-variant">Partnering with premier legal firms to ensure complex international transactions are flawlessly executed.</p>
-</div>
-<div class="bg-white/5 p-12 border border-white/10 hover:bg-white/10 transition-colors">
-<span class="material-symbols-outlined text-4xl text-tertiary-fixed mb-8 block" style="font-variation-settings: 'FILL' 1;">diamond</span>
-<h4 class="font-headline-md text-headline-md mb-4">Private Concierge</h4>
-<p class="text-outline-variant">Dedicated management for relocating your life, from lifestyle services to private aviation.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Testimonials Section -->
-<section class="max-w-container-max mx-auto px-margin-desktop py-section-gap relative overflow-hidden">
-<div class="absolute right-0 top-0 opacity-[0.03] select-none pointer-events-none translate-x-1/4">
-<h2 class="text-[300px] font-bold text-on-surface leading-none uppercase">Trust</h2>
-</div>
-<div class="text-center mb-24 relative z-10">
-<h2 class="font-headline-lg text-headline-lg">Client Stories</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-20 relative z-10">
-<div class="flex flex-col gap-8">
-<span class="text-6xl font-display-lg text-outline-variant/30 leading-none">“</span>
-<p class="font-body-lg text-2xl italic leading-relaxed text-on-surface">The level of discretion and market intelligence provided by Luxe Brokerage is simply unmatched in the high-end sector. They didn't just find us a house; they secured an architectural legacy for our family.</p>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a successful middle-aged woman with a confident smile. She has a sleek hairstyle and is wearing a high-end black blazer. The background is a blurred corporate office setting with soft, natural lighting. The style is professional and elegant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaAfhiCrqcjyrhK-s3Iqw5fVyjqkdcDL56V0f8cXS3h_hX8fc_v2zpy2WVMW9YG7UAqW_SGrOOAQVGWSyTctKvCbQzBTwEg6Hb9k-83k9xJ_sNXK0AVE1KvtgLbIkEATRbeK0FK6TUWsmuYbc4YZXHYWXJVKC2tK84jcLtY9QbxyXJIQZBM8BUQjXFuqPtAZjwRMfgvySOWZXo17HZbNPRxVbdYJJc0H-jcVqMnzXksCnuk8NgWpn9"/>
-</div>
-<div>
-<p class="font-label-md">Elena Richards</p>
-<p class="text-xs text-secondary uppercase tracking-widest">Tech Founder &amp; Investor</p>
-</div>
-</div>
-</div>
-<div class="flex flex-col gap-8 md:mt-32">
-<span class="text-6xl font-display-lg text-outline-variant/30 leading-none">“</span>
-<p class="font-body-lg text-2xl italic leading-relaxed text-on-surface">Navigating the Manhattan market requires more than just connections—it requires a partner who understands timing and value at this level. Luxe Brokerage is that partner.</p>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a sophisticated man in his 50s. He is wearing a tailored navy suit and looks composed. The lighting is soft and flattering, typical of a high-end studio portrait. The background is a warm, neutral gray." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLBHgkhv9o664bl8vhs29seJO9QXI-4WpyEIicRq87gYKm98xkzAB2zQnbnFuJBVY5G7UIat9KmMVyMaWsXJRQ0gcXcDE_FNRRNTKHeWZ8eYHOG6wARAzoDI1JSek-Bq98ckbYP7QYS-J5KLuVxQ3h98afz2wZ8o18f_p7sqmmxx50LfSI0rZ4_oc5dxP-ljhyWK3udHEbQs_ElxmHSCv0tg6m4hwEU6WiG2Sp4skhOnRBJ32lkGcO"/>
-</div>
-<div>
-<p class="font-label-md">Marcus Thorne</p>
-<p class="text-xs text-secondary uppercase tracking-widest">Managing Director, Thorne Equity</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Map/Location Teaser -->
-<section class="h-[614px] relative grayscale hover:grayscale-0 transition-all duration-1000">
-<div class="absolute inset-0 z-0">
-<div class="w-full h-full" data-location="Manhattan, New York" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC4S5_TxBLjx0vjqfdIL_hEJfSwFq7IdEGlkknxqPb9ZSXVDFXXza5ZEooTGjXSivd0CfHRJ0WO4nQ14HtHm0fhWkYnw-ha1WJmf8h3iniN8E51cqDWO6CW99kfGlrMEwHVT9FYDdZUJmCz77X8SGp_7AundrW3f8URcGQ8OHla8SR5_kQJg4KUPJ-3s7KTwyAdOBtrfylEeWzbrCKgsb2MIbFn2qO6aKPeKWnYpqtks2g-lwIlOmFb')"></div>
-</div>
-<div class="absolute inset-0 bg-on-surface/40 flex items-center justify-center">
-<div class="text-center text-on-primary">
-<h3 class="font-headline-lg text-headline-lg mb-6">Our Global Footprint</h3>
-<button class="bg-on-primary text-on-surface px-10 py-4 font-label-md uppercase tracking-wider hover:bg-surface transition-colors">Explore Locations</button>
-</div>
-</div>
-</section>
-<!-- Footer -->
-<footer class="bg-on-surface text-inverse-on-surface w-full py-16">
-<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
-<div class="md:col-span-1">
-<div class="font-headline-md text-headline-md text-inverse-on-surface mb-8">LUXE BROKERAGE</div>
-<p class="text-outline-variant text-sm mb-8 leading-relaxed">Defining the future of luxury real estate through architectural excellence and unparalleled service standards.</p>
-<div class="flex gap-4">
-<a class="w-10 h-10 border border-outline-variant/30 flex items-center justify-center hover:border-tertiary-fixed transition-colors" href="#">
-<span class="material-symbols-outlined text-sm">public</span>
-</a>
-<a class="w-10 h-10 border border-outline-variant/30 flex items-center justify-center hover:border-tertiary-fixed transition-colors" href="#">
-<span class="material-symbols-outlined text-sm">alternate_email</span>
-</a>
-<a class="w-10 h-10 border border-outline-variant/30 flex items-center justify-center hover:border-tertiary-fixed transition-colors" href="#">
-<span class="material-symbols-outlined text-sm">campaign</span>
-</a>
-</div>
-</div>
-<div class="md:col-span-1">
-<h5 class="font-label-md uppercase tracking-widest mb-8">Navigation</h5>
-<ul class="flex flex-col gap-4 text-outline-variant">
-<li><a class="hover:text-on-primary transition-colors" href="#">Featured Homes</a></li>
-<li><a class="hover:text-on-primary transition-colors" href="#">Private Collection</a></li>
-<li><a class="hover:text-on-primary transition-colors" href="#">Advisory Services</a></li>
-<li><a class="hover:text-on-primary transition-colors" href="#">Brokerage Network</a></li>
-</ul>
-</div>
-<div class="md:col-span-1">
-<h5 class="font-label-md uppercase tracking-widest mb-8">Regions</h5>
-<ul class="flex flex-col gap-4 text-outline-variant">
-<li><a class="hover:text-on-primary transition-colors" href="#">New York City</a></li>
-<li><a class="hover:text-on-primary transition-colors" href="#">Los Angeles</a></li>
-<li><a class="hover:text-on-primary transition-colors" href="#">French Riviera</a></li>
-<li><a class="hover:text-on-primary transition-colors" href="#">Dubai</a></li>
-</ul>
-</div>
-<div class="md:col-span-1">
-<h5 class="font-label-md uppercase tracking-widest mb-8">Newsletter</h5>
-<p class="text-outline-variant text-sm mb-6">Receive curated insights into the world's most exclusive real estate markets.</p>
-<div class="flex flex-col gap-3">
-<input class="bg-transparent border border-outline-variant/30 px-4 py-3 outline-none focus:border-tertiary-fixed transition-colors" placeholder="Email Address" type="email"/>
-<button class="bg-tertiary-fixed text-on-tertiary-fixed py-3 font-label-md uppercase tracking-wider hover:bg-tertiary-fixed-dim transition-colors">Subscribe</button>
-</div>
-</div>
-</div>
-<div class="max-w-container-max mx-auto px-margin-desktop mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-outline-variant">
-<div>© 2024 Luxe Brokerage Group. All rights reserved.</div>
-<div class="flex gap-8">
-<a class="hover:underline underline-offset-4 decoration-tertiary-fixed" href="#">Privacy Policy</a>
-<a class="hover:underline underline-offset-4 decoration-tertiary-fixed" href="#">Terms of Service</a>
-<a class="hover:underline underline-offset-4 decoration-tertiary-fixed" href="#">Accessibility</a>
-<a class="hover:underline underline-offset-4 decoration-tertiary-fixed" href="#">Cookie Settings</a>
-</div>
-</div>
-</footer>
-<script>
-        // Simple header scroll interaction
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('h-16', 'bg-surface/95');
-                nav.classList.remove('h-20');
-            } else {
-                nav.classList.remove('h-16', 'bg-surface/95');
-                nav.classList.add('h-20');
+                }
             }
-        });
-
-        // Micro-interaction for hover states on property cards
-        document.querySelectorAll('.group').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                // Potential for adding JS driven animations if needed
-            });
-        });
+        }
     </script>
-</body></html>
+</head>
+
+<body class="bg-background text-primary font-sans antialiased selection:bg-primary selection:text-white">
+
+    <!-- Cabeçalho -->
+    <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-5 bg-background/90 backdrop-blur-md border-b border-outline">
+        <a href="index.html" class="font-serif text-2xl font-bold tracking-tight">LUCAS CARVALHO</a>
+        <nav class="hidden md:flex gap-10 items-center text-[11px] font-bold tracking-widest uppercase">
+            <a href="imoveis.html" class="text-secondary hover:text-primary transition-colors">Portfólio</a>
+            <a href="sobre.html" class="text-secondary hover:text-primary transition-colors">Sobre</a>
+            <a href="#expertise" class="text-secondary hover:text-primary transition-colors">Especialidades</a>
+            <a href="#contato" class="text-secondary hover:text-primary transition-colors">Contato</a>
+        </nav>
+        <a href="#contato" class="hidden md:inline-block bg-primary text-white text-[11px] font-bold px-8 py-4 uppercase tracking-widest hover:bg-secondary transition-colors">Agendar Visita</a>
+    </header>
+
+    <main class="pt-[85px]">
+        <!-- Hero Section -->
+        <section class="relative w-full h-[85vh] min-h-[700px] flex items-center justify-center overflow-hidden bg-primary">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-50 mix-blend-luminosity" alt="Mansão Alto Padrão">
+            </div>
+
+            <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-end h-full pb-24">
+                <div class="max-w-3xl reveal reveal-bottom">
+                    <span class="text-white/70 text-xs font-bold tracking-widest uppercase mb-6 block">São Paulo | Alto Padrão</span>
+                    <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-medium leading-[1.1] mb-8">
+                        Arquitetura de<br>Viver Bem.
+                    </h1>
+                    <div class="flex flex-col sm:flex-row gap-6 mt-12">
+                        <a href="imoveis.html" class="bg-white text-primary text-[11px] text-center font-bold px-10 py-5 uppercase tracking-widest hover:bg-gray-200 transition-colors">
+                            Explorar Portfólio
+                        </a>
+                        <a href="#contato" class="border border-white text-white text-[11px] text-center font-bold px-10 py-5 uppercase tracking-widest hover:bg-white hover:text-primary transition-colors">
+                            Falar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Manifesto / Filosofia -->
+        <section class="py-32 px-6 md:px-12 max-w-5xl mx-auto text-center reveal reveal-bottom">
+            <span class="material-symbols-outlined text-[32px] text-primary mb-8">home_pin</span>
+            <h2 class="font-serif text-3xl md:text-5xl leading-tight mb-8">"Não vendemos apenas propriedades. Curamos espaços que abrigam o seu legado."</h2>
+            <p class="text-secondary text-lg max-w-2xl mx-auto font-light leading-relaxed">
+                Nossa abordagem transcende a transação tradicional. Unimos uma precisão analítica apurada com uma profunda sensibilidade estética para encontrar residências que representem o auge do design e do conforto na cidade de São Paulo.
+            </p>
+        </section>
+
+        <!-- Destaques -->
+        <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-outline">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal reveal-left">
+                <div>
+                    <span class="text-[11px] font-bold tracking-widest text-secondary uppercase mb-3 block">Seleção Exclusiva</span>
+                    <h2 class="font-serif text-4xl md:text-5xl text-primary">Imóveis em Destaque</h2>
+                </div>
+                <a href="imoveis.html" class="inline-flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase border-b border-primary pb-1 hover:text-secondary transition-colors">
+                    Ver catálogo completo <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <article class="group cursor-pointer reveal reveal-bottom delay-100">
+                    <div class="relative overflow-hidden mb-6 aspect-[4/5] bg-surface img-zoom-hover">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Exclusividade</div>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl mb-2 group-hover:text-secondary transition-colors">Villa Sereno</h3>
+                        <p class="text-sm text-secondary mb-4 flex items-center gap-1 font-light"><span class="material-symbols-outlined text-[16px]">location_on</span> Jardim Europa, SP</p>
+                        <div class="flex justify-between items-center border-t border-outline pt-4">
+                            <span class="text-lg font-medium">R$ 15.000.000</span>
+                            <div class="flex gap-4 text-xs font-bold text-secondary uppercase tracking-widest">
+                                <span>4 Suítes</span>
+                                <span>450m²</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="group cursor-pointer reveal reveal-bottom delay-200">
+                    <div class="relative overflow-hidden mb-6 aspect-[4/5] bg-surface img-zoom-hover">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-white text-primary border border-primary text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Lançamento</div>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl mb-2 group-hover:text-secondary transition-colors">Cobertura Horizon</h3>
+                        <p class="text-sm text-secondary mb-4 flex items-center gap-1 font-light"><span class="material-symbols-outlined text-[16px]">location_on</span> Itaim Bibi, SP</p>
+                        <div class="flex justify-between items-center border-t border-outline pt-4">
+                            <span class="text-lg font-medium">R$ 22.500.000</span>
+                            <div class="flex gap-4 text-xs font-bold text-secondary uppercase tracking-widest">
+                                <span>3 Suítes</span>
+                                <span>320m²</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="group cursor-pointer reveal reveal-bottom delay-300">
+                    <div class="relative overflow-hidden mb-6 aspect-[4/5] bg-surface img-zoom-hover">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl mb-2 group-hover:text-secondary transition-colors">Residência Opus</h3>
+                        <p class="text-sm text-secondary mb-4 flex items-center gap-1 font-light"><span class="material-symbols-outlined text-[16px]">location_on</span> Alto de Pinheiros, SP</p>
+                        <div class="flex justify-between items-center border-t border-outline pt-4">
+                            <span class="text-lg font-medium">R$ 18.000.000</span>
+                            <div class="flex gap-4 text-xs font-bold text-secondary uppercase tracking-widest">
+                                <span>5 Suítes</span>
+                                <span>600m²</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Especialidades / Serviços -->
+        <section id="expertise" class="bg-primary text-white py-24 px-6 md:px-12">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16">
+                <div class="reveal reveal-left">
+                    <span class="text-[11px] font-bold tracking-widest text-white/50 uppercase mb-3 block">Nossos Serviços</span>
+                    <h2 class="font-serif text-4xl md:text-5xl mb-6">Expertise sem paralelos.</h2>
+                    <p class="text-white/70 font-light mb-8">Atendimento tailor-made para clientes que valorizam discrição, velocidade e precisão no mercado de alto padrão.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-16">
+                    <div class="border-t border-white/20 pt-6 reveal reveal-bottom delay-100">
+                        <span class="material-symbols-outlined text-[32px] mb-4 text-white/80">real_estate_agent</span>
+                        <h4 class="font-serif text-2xl mb-3">Consultoria de Aquisição</h4>
+                        <p class="text-sm text-white/60 font-light leading-relaxed">Mapeamento meticuloso do mercado para encontrar o imóvel que se alinha perfeitamente ao seu lifestyle e exigências técnicas.</p>
+                    </div>
+                    <div class="border-t border-white/20 pt-6 reveal reveal-bottom delay-200">
+                        <span class="material-symbols-outlined text-[32px] mb-4 text-white/80">trending_up</span>
+                        <h4 class="font-serif text-2xl mb-3">Gestão de Portfólio</h4>
+                        <p class="text-sm text-white/60 font-light leading-relaxed">Avaliação e posicionamento estratégico do seu ativo no mercado para maximizar liquidez e retorno financeiro.</p>
+                    </div>
+                    <div class="border-t border-white/20 pt-6 reveal reveal-bottom delay-100">
+                        <span class="material-symbols-outlined text-[32px] mb-4 text-white/80">shield_lock</span>
+                        <h4 class="font-serif text-2xl mb-3">Transações Off-Market</h4>
+                        <p class="text-sm text-white/60 font-light leading-relaxed">Acesso exclusivo a propriedades que não estão listadas publicamente, garantindo máxima privacidade aos envolvidos.</p>
+                    </div>
+                    <div class="border-t border-white/20 pt-6 reveal reveal-bottom delay-200">
+                        <span class="material-symbols-outlined text-[32px] mb-4 text-white/80">gavel</span>
+                        <h4 class="font-serif text-2xl mb-3">Assessoria Jurídica</h4>
+                        <p class="text-sm text-white/60 font-light leading-relaxed">Suporte completo em diligências e estruturação de contratos para uma negociação segura e transparente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato -->
+        <section id="contato" class="py-32 px-6 md:px-12 bg-surface border-t border-outline overflow-hidden">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Coluna de Texto -->
+                <div class="reveal reveal-left">
+                    <span class="text-[11px] font-bold tracking-widest text-secondary uppercase mb-6 block">Atendimento Exclusivo</span>
+                    <h2 class="font-serif text-4xl md:text-5xl mb-8 leading-tight">Vamos iniciar uma conversa.</h2>
+                    <p class="text-secondary text-lg font-light leading-relaxed mb-10">
+                        Seja para encontrar a propriedade ideal para a sua família ou para posicionar o seu imóvel no mercado de forma estratégica, estou à disposição para uma consultoria confidencial e altamente personalizada.
+                    </p>
+
+                    <div class="flex items-center gap-6 text-sm font-bold tracking-widest uppercase border-l border-primary pl-6 py-2">
+                        <span class="material-symbols-outlined text-[24px]">forum</span> Disponibilidade para clientes Private
+                    </div>
+                </div>
+
+                <!-- Coluna do Formulário -->
+                <div class="bg-background p-10 md:p-14 border border-outline shadow-[0_4px_40px_rgba(0,0,0,0.03)] reveal reveal-right delay-200">
+                    <form class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="relative">
+                                <label class="block text-[10px] font-bold text-secondary uppercase tracking-widest mb-2">Nome Completo</label>
+                                <input type="text" class="w-full border-b border-outline py-2 outline-none focus:border-primary transition-colors bg-transparent text-sm" placeholder="Seu nome">
+                            </div>
+                            <div class="relative">
+                                <label class="block text-[10px] font-bold text-secondary uppercase tracking-widest mb-2">Telefone</label>
+                                <input type="tel" class="w-full border-b border-outline py-2 outline-none focus:border-primary transition-colors bg-transparent text-sm" placeholder="(11) 90000-0000">
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <label class="block text-[10px] font-bold text-secondary uppercase tracking-widest mb-2">E-mail</label>
+                            <input type="email" class="w-full border-b border-outline py-2 outline-none focus:border-primary transition-colors bg-transparent text-sm" placeholder="seu@email.com">
+                        </div>
+
+                        <div class="relative">
+                            <label class="block text-[10px] font-bold text-secondary uppercase tracking-widest mb-2">Mensagem (Opcional)</label>
+                            <textarea rows="2" class="w-full border-b border-outline py-2 outline-none focus:border-primary transition-colors bg-transparent text-sm resize-none" placeholder="Em que posso ajudar?"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-primary text-white text-[11px] font-bold py-5 uppercase tracking-widest hover:bg-secondary transition-colors mt-6">
+                            Solicitar Contato
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="w-full bg-background border-t border-outline pt-20 pb-10 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div class="md:col-span-2">
+                <div class="font-serif text-2xl font-bold tracking-tight mb-4">LUCAS CARVALHO</div>
+                <p class="text-sm text-secondary max-w-sm font-light leading-relaxed">
+                    Elevando o padrão do mercado imobiliário paulistano através de curadoria impecável, discrição absoluta e expertise profunda.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-[11px] font-bold tracking-widest uppercase mb-6">Contato</h4>
+                <ul class="space-y-4 text-sm text-secondary font-light">
+                    <li>lucas@carvalho-estate.com</li>
+                    <li>+55 (11) 99999-9999</li>
+                    <li>Av. Faria Lima, 3000 - SP</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-[11px] font-bold tracking-widest uppercase mb-6">Links Rápidos</h4>
+                <ul class="space-y-4 text-[11px] font-bold tracking-widest uppercase">
+                    <li><a href="imoveis.html" class="text-secondary hover:text-primary transition-colors">Portfólio</a></li>
+                    <li><a href="sobre.html" class="text-secondary hover:text-primary transition-colors">Sobre</a></li>
+                    <li><a href="#contato" class="text-secondary hover:text-primary transition-colors">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-outline pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-light text-secondary">
+            <p>© 2026 Lucas Carvalho Consultoria. Todos os direitos reservados.</p>
+            <p>CRECI-SP 123456-F</p>
+        </div>
+    </footer>
+
+    <!-- Script Customizado -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
