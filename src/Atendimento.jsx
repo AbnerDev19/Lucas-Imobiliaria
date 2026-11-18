@@ -15,7 +15,7 @@ const etapas = [
   [CalendarDays, 'Visita ao empreendimento', 'Escolha o que quer conhecer de perto e combine uma visita pelo WhatsApp.']
 ];
 
-export function Especialidades() {
+export function Especialidades({ naPaginaSobre = false }) {
   const ref = useRef(null);
   const pointer = useMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)');
   return (
@@ -29,12 +29,14 @@ export function Especialidades() {
               className="enfase-proximidade" /> : 'Conte com o Lucas.'}</h2>
           </div>
           <p>Acompanhamento para escolher um imóvel no Distrito Federal, da busca à visita.</p>
-          <LinkSeta href={rotas.sobre}>Conheça o atendimento</LinkSeta>
+          {naPaginaSobre
+            ? <LinkSeta href="#contato">Agende uma visita</LinkSeta>
+            : <LinkSeta href={rotas.sobre}>Conheça o atendimento</LinkSeta>}
         </AnimatedContent>
         <div className="especialidades-lista">
           {etapas.map(([Icone, titulo, descricao]) => (
             <div key={titulo} className="especialidade">
-              <Icone size={24} strokeWidth={1.5} aria-hidden="true" />
+              <span className="especialidade-icone"><Icone size={22} strokeWidth={1.5} aria-hidden="true" /></span>
               <div><h3>{titulo}</h3><p>{descricao}</p></div>
             </div>
           ))}
@@ -53,7 +55,7 @@ export function AssistenteContato() {
 
   return (
     <Stepper step={passo} onStepChange={setPasso} linear disableStepIndicators
-      width="100%" theme="light" accentColor="#914a33" radius={14} className="assistente"
+      width="100%" theme="light" accentColor="#132b45" radius={23} className="assistente"
       backButtonText="Voltar" nextButtonText="Continuar" transition="slide" showFooter={passo < 3}
       nextButtonProps={{ disabled: passo === 1 ? !objetivo : !regiao }}>
       <Step title="Objetivo">
@@ -81,11 +83,11 @@ export function AssistenteContato() {
       <Step title="Mensagem">
         <div className="resumo-contato">
           <CallChip icon={<ClipboardCheck aria-hidden="true" />} name="Mensagem pronta" argument="" status="done"
-            size={30} color="#61402f" surfaceColor="#f3e8dd" doneColor="#517451" />
+            size={30} color="#233851" surfaceColor="#e8eff7" doneColor="#2d6955" />
           <p>{resumo}</p>
           <div className="resumo-botoes">
             <button type="button" className="botao botao--contorno" onClick={() => setPasso(2)}>Voltar</button>
-            <WhatsApp className="botao--terracota" mensagem={resumo}>Abrir WhatsApp</WhatsApp>
+            <WhatsApp className="botao--marinho" mensagem={resumo}>Abrir WhatsApp</WhatsApp>
           </div>
         </div>
       </Step>
@@ -109,8 +111,8 @@ export function Contato() {
         <AssistenteContato />
       </div>
       {largo && <div className="marca-animada moldura" aria-hidden="true">
-        <TechText text="Lucas Carvalho" fontFamily="Fraunces Variable" fontWeight={400} fontSize={112}
-          align="center" color="#a88c77" accentColor="#ead5bf" intro="none" specks={6} labels={false}
+        <TechText text="Lucas Carvalho" fontFamily="Playfair Display Variable" fontWeight={400} fontSize={112}
+          align="center" color="#90a9c8" accentColor="#ebd0a2" intro="none" specks={6} labels={false}
           sweep={false} selection={false} draggable={false} clickKick={false} />
       </div>}
     </section>

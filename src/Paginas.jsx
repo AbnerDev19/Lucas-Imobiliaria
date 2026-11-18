@@ -13,49 +13,94 @@ import { Contato, Especialidades } from './Atendimento.jsx';
 import { destaques, faixaQuartos, imoveis, linkImovel, normalizarBusca, regioes } from './catalogo.js';
 import { mensagemImovel } from './contato.js';
 import { CartaoImovel, LinkSeta, TituloSecao, WhatsApp, rotas, useMedia } from './ui.jsx';
+import { useMovimentoImagem } from './useMovimentoImagem.js';
 
 const slides = [
-  [imoveis[0], 2],
   [imoveis[3], 1],
+  [imoveis[0], 2],
   [imoveis[1], 0]
 ].map(([imovel, indice]) => ({ ...imovel.fotos[indice], id: imovel.id, nome: imovel.nome }));
 
 function Hero() {
   const [indice, setIndice] = useState(0);
+  const [solicitada, setSolicitada] = useState(0);
+  const [carregadas, setCarregadas] = useState([0]);
+  const moldura = useRef(null);
+  const imagem = useRef(null);
   const foto = slides[indice];
-  const mudar = passo => setIndice(atual => (atual + passo + slides.length) % slides.length);
+  const mudar = passo => setSolicitada(atual => (atual + passo + slides.length) % slides.length);
+
+  useMovimentoImagem(moldura, imagem);
+
+  useEffect(() => {
+    if (solicitada === indice) return;
+    let ativa = true;
+    const proxima = new Image();
+    proxima.src = slides[solicitada].image;
+    proxima.decode().then(() => {
+      if (!ativa) return;
+      setCarregadas(anteriores => anteriores.includes(solicitada) ? anteriores : [...anteriores, solicitada]);
+      setIndice(solicitada);
+    }, () => {
+      if (ativa) setSolicitada(indice);
+    });
+    return () => { ativa = false; };
+  }, [solicitada, indice]);
 
   return (
     <section className="hero" aria-labelledby="titulo-inicio">
-      <div className="hero-imagem" aria-hidden="true">
-        <img key={foto.image} src={foto.image} alt="" fetchPriority="high" />
-      </div>
       <div className="moldura hero-moldura">
-        <AnimatedContent className="hero-copy" trigger="load" distance={15} duration={0.55} stagger={0.08}>
-          <span className="etiqueta"><span />Imóveis em Brasília e no DF</span>
-          <h1 id="titulo-inicio">O lugar certo<br />para a sua <em><GradientText colors={['#f1c9a7', '#fff1de', '#dcb395']}
-            animationSpeed={10} variant="flow">história.</GradientText></em></h1>
-          <p>Encontre seu próximo imóvel no Distrito Federal com a orientação de Lucas Carvalho.</p>
+        <AnimatedContent className="hero-copy" trigger="load" distance={18} duration={0.72} stagger={0.09}>
+          <span className="etiqueta"><span />Consultoria imobiliária no DF</span>
+          <h1 id="titulo-inicio">O lugar certo <span className="hero-segunda-linha">para a sua <em><GradientText
+            colors={['#e5bc79', '#fff0c9', '#d3a962']} animationSpeed={15} variant="flow">história.</GradientText></em></span></h1>
+          <p>Encontre seu próximo imóvel em Brasília e no Distrito Federal com a orientação de Lucas Carvalho.</p>
           <div className="hero-botoes">
-            <a href={rotas.imoveis} className="botao botao--creme">Explorar imóveis <ArrowUpRight size={17} aria-hidden="true" /></a>
-            <WhatsApp className="botao--hero" />
+            <a href={rotas.imoveis} className="botao botao--champagne">Explorar imóveis <ArrowUpRight size={17} aria-hidden="true" /></a>
+            <WhatsApp className="botao--hero" principal />
           </div>
         </AnimatedContent>
-        <div className="hero-rodape">
-          <a href="#destaques" className="descer"><ArrowDown size={15} aria-hidden="true" /> Ver destaques</a>
+
+        <div className="hero-visual">
+          <div className="hero-imagem" ref={moldura} aria-hidden="true">
+            <div className="hero-cenas" ref={imagem}>
+              {carregadas.map(posicao => (
+                <img key={posicao} src={slides[posicao].image} alt="" data-ativa={posicao === indice}
+                  fetchPriority={posicao === 0 ? 'high' : 'auto'} decoding={posicao === 0 ? 'auto' : 'async'} />
+              ))}
+            </div>
+          </div>
           <div className="hero-galeria">
             <a href={linkImovel(foto.id)} className="hero-legenda" aria-live="polite">
-              <span>{foto.tipo}</span>{foto.nome}
+              <span>{foto.tipo}</span>
+              <strong>{foto.nome}<ArrowUpRight size={14} aria-hidden="true" /></strong>
             </a>
-            <ClickSpark sparkColor="#e8c29b" sparkCount={6} sparkSize={10} sparkRadius={22} duration={330}
+            <ClickSpark sparkColor="#ebd0a2" sparkCount={4} sparkSize={6} sparkRadius={14} duration={290}
               className="hero-controles" style={{ width: 'auto', height: 'auto' }}>
               <button type="button" onClick={() => mudar(-1)} aria-label="Imagem anterior"><ChevronLeft size={19} /></button>
               <button type="button" onClick={() => mudar(1)} aria-label="Próxima imagem"><ChevronRight size={19} /></button>
             </ClickSpark>
           </div>
         </div>
+        <a href="#destaques" className="descer"><ArrowDown size={15} aria-hidden="true" /> Ver destaques</a>
       </div>
     </section>
+  );
+}
+
+function ImagemImovel({ imovel }) {
+  const moldura = useRef(null);
+  const imagem = useRef(null);
+  const capa = imovel.fotos[0];
+  useMovimentoImagem(moldura, imagem);
+
+  return (
+    <figure className={`detalhe-capa detalhe-capa--${imovel.id}`}>
+      <div className="detalhe-capa-imagem" ref={moldura}>
+        <img src={capa.image} alt={`${capa.label} de ${imovel.nome}`} fetchPriority="high" ref={imagem} />
+      </div>
+      <figcaption>{capa.tipo}</figcaption>
+    </figure>
   );
 }
 
@@ -113,7 +158,7 @@ export function Catalogo() {
             onChange={evento => setBusca(evento.target.value)} placeholder="Nome ou região" /></div>
           <div className="menu-regiao">
             <BranchedMenu key={menuKey} items={menuRegioes} onSelect={setRegiao} width={236}
-              color="#4d4037" accentColor="#904931" lineColor="#c9b7a5" rowHeight={38} fontSize={14} />
+              color="#293b52" accentColor="#72521f" lineColor="#c4d0df" rowHeight={38} fontSize={14} />
           </div>
           <label className="campo" htmlFor="quartos">Quartos</label>
           <select id="quartos" value={quartos} onChange={evento => setQuartos(evento.target.value)}>
@@ -158,8 +203,8 @@ function Galeria({ imovel }) {
       </div>
       <AccordionGallery key={String(mobile)} items={imovel.fotos} defaultIndex={ativa} activeIndex={ativa}
         onActiveChange={setAtiva} orientation={mobile ? 'vertical' : 'horizontal'} height={mobile ? 245 : 386}
-        expandRatio={0.66} gap={6} radius={6} grayscale={false} parallax={0.12} tilt={0}
-        overlayColor="#271a14" trigger="click" />
+        expandRatio={0.66} gap={8} radius={12} grayscale={false} parallax={0.12} tilt={0}
+        overlayColor="#0a192f" trigger="click" />
       <div className="galeria-legenda" aria-live="polite"><strong>{foto.label}</strong><span>{foto.tipo}</span></div>
       <dialog ref={dialogo} className="dialogo-galeria" aria-label={`Galeria de ${imovel.nome}`}
         onClose={() => focoAnterior.current?.focus()}
@@ -192,7 +237,7 @@ function Relacionados({ imovel }) {
     <section className="relacionados">
       <TituloSecao etiqueta="Explore o catálogo">Outros imóveis</TituloSecao>
       <AnimatedList items={proximos} width="100%" maxHeight={400} theme="light" frame={false}
-        accentColor="#914a33" showGradients={false} selectOnHover={false} ariaLabel="Outros imóveis"
+        accentColor="#72521f" showGradients={false} selectOnHover={false} ariaLabel="Outros imóveis"
         onItemSelect={item => window.location.assign(linkImovel(item.id))} />
     </section>
   );
@@ -214,7 +259,6 @@ export function Detalhe() {
     </section>
   );
 
-  const capa = imovel.fotos[0];
   return (
     <div className="moldura detalhe">
       <a className="voltar" href={rotas.imoveis}><ArrowLeft size={16} /> Voltar aos imóveis</a>
@@ -224,10 +268,7 @@ export function Detalhe() {
           <h1>{imovel.nome}</h1>
           <div className="detalhe-fatos"><span><MapPin size={17} />{imovel.regiao}, DF</span><span><BedDouble size={18} />{faixaQuartos(imovel)}</span></div>
         </div>
-        <figure className={`detalhe-capa detalhe-capa--${imovel.id}`}>
-          <img src={capa.image} alt={`${capa.label} de ${imovel.nome}`} fetchPriority="high" />
-          <figcaption>{capa.tipo}</figcaption>
-        </figure>
+        <ImagemImovel imovel={imovel} />
       </div>
       <div className="detalhe-grade">
         <div className="detalhe-corpo">
@@ -239,7 +280,7 @@ export function Detalhe() {
           <span className="etiqueta"><span />Lucas Carvalho</span>
           <h2>Gostou deste imóvel?</h2>
           <p>Consulte valores e unidades disponíveis ou combine uma visita.</p>
-          <WhatsApp className="botao--terracota" mensagem={mensagemImovel(imovel.nome)} />
+          <WhatsApp className="botao--marinho" mensagem={mensagemImovel(imovel.nome)} principal />
         </aside>
       </div>
       <Relacionados imovel={imovel} />
@@ -255,14 +296,14 @@ export function Sobre() {
           <span className="etiqueta"><span />Consultoria imobiliária</span>
           <h1>Lucas Carvalho.</h1>
           <p>Corretor de imóveis com atendimento voltado a quem busca comprar, investir ou conhecer empreendimentos no Distrito Federal.</p>
-          <WhatsApp className="botao--terracota" />
+          <WhatsApp className="botao--marinho" principal />
           <LinkSeta href={rotas.imoveis} className="sobre-link">Conhecer os imóveis</LinkSeta>
         </AnimatedContent>
         <figure><img src="./media/aurora-4.webp" alt="Perspectiva das torres do Alto da Aurora" />
           <figcaption><Building2 size={16} /> Alto da Aurora, Sobradinho · Perspectiva ilustrativa</figcaption>
         </figure>
       </section>
-      <Especialidades />
+      <Especialidades naPaginaSobre />
       <Contato />
     </>
   );
