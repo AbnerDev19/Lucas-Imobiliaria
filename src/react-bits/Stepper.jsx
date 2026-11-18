@@ -410,12 +410,12 @@ export default function Stepper({
               type="button"
               className="stepper__segment"
               data-status={status}
-              aria-label={typeof title === 'string' ? `Etapa ${number}: ${title}` : `Etapa ${number}`}
+              aria-label={typeof title === 'string' ? `Etapa ${number} ${title}` : `Etapa ${number}`}
               aria-current={number === current ? 'step' : undefined}
               disabled={!reachable(number)}
               onClick={() => go(number)}
             >
-              {badge(entry, number, status)}
+              {badge(entry, number, status)}{' '}
               {text}
             </button>
           );
@@ -450,7 +450,7 @@ export default function Stepper({
       <div className="stepper__body">
         <div ref={viewportRef} className={`stepper__viewport ${contentClassName}`.trim()} aria-live="polite">
           {view.previous !== null && (
-            <div key={view.id - 1} ref={leavingRef} className="stepper__pane stepper__pane--leaving" aria-hidden="true">
+            <div key={view.id - 1} ref={leavingRef} className="stepper__pane stepper__pane--leaving" aria-hidden="true" inert>
               {paneContent(view.previous)}
             </div>
           )}
