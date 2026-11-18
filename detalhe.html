@@ -1,110 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cobertura Duplex no Itaim | Lucas Carvalho</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        background: "#ffffff",
-                        surface: "#f8f9fa",
-                        primary: "#000000",
-                        secondary: "#666666",
-                        outline: "#e5e5e5"
-                    },
-                    fontFamily: {
-                        serif: ["Playfair Display", "serif"],
-                        sans: ["Plus Jakarta Sans", "sans-serif"],
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Veja fotos, características e localização do empreendimento e converse com Lucas Carvalho.">
+  <meta name="theme-color" content="#faf7f1">
+  <link rel="icon" href="./media/icone.png" type="image/png">
+  <title>Detalhes do imóvel | Lucas Carvalho</title>
+  <link rel="stylesheet" href="./assets/site.css">
+  <script type="module" src="./assets/site.js"></script>
 </head>
-
-<body class="bg-background text-primary font-sans antialiased">
-
-    <!-- Cabeçalho (O mesmo da Home) -->
-
-    <!-- Hero Imóvel -->
-    <section class="w-full h-[70vh] min-h-[500px] mt-[70px]">
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Interior">
-    </section>
-
-    <main class="max-w-7xl mx-auto px-6 md:px-12 py-16 grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-16">
-        <!-- Conteúdo Principal -->
-        <div>
-            <h1 class="font-serif text-4xl md:text-5xl mb-4">Cobertura Duplex no Itaim</h1>
-            <div class="text-2xl text-secondary mb-8">R$ 8.500.000</div>
-
-            <div class="flex flex-wrap gap-3 mb-10">
-                <span class="bg-surface px-4 py-2 text-xs font-bold uppercase tracking-widest">400 m²</span>
-                <span class="bg-surface px-4 py-2 text-xs font-bold uppercase tracking-widest">4 Suítes</span>
-                <span class="bg-surface px-4 py-2 text-xs font-bold uppercase tracking-widest">5 Vagas</span>
-                <span class="bg-surface px-4 py-2 text-xs font-bold uppercase tracking-widest">Piscina Privativa</span>
-            </div>
-
-            <div class="prose prose-lg text-secondary leading-relaxed mb-12">
-                <p class="mb-4">Uma obra-prima arquitetônica localizada no coração do Itaim Bibi. Esta cobertura duplex redefine o conceito de luxo e exclusividade, oferecendo vistas panorâmicas ininterruptas do skyline paulistano através de imensas esquadrias de piso
-                    a teto.</p>
-                <p>O primeiro pavimento apresenta um living monumental integrado ao terraço, criando um espaço contínuo perfeito para recepções. Acabamentos em mármore importado e madeira nobre ditam o tom de sofisticação. A área íntima no piso superior
-                    garante absoluta privacidade, com uma suíte master que inclui closet espaçoso e banheiros senhor e senhora.</p>
-            </div>
-
-            <h3 class="font-serif text-2xl mb-6">Características</h3>
-            <ul class="divide-y divide-outline border-t border-outline mb-16 text-sm text-secondary">
-                <li class="py-4 flex justify-between"><span>Ar Condicionado Central</span> <span class="material-symbols-outlined">ac_unit</span></li>
-                <li class="py-4 flex justify-between"><span>Automação Residencial</span> <span class="material-symbols-outlined">smart_toy</span></li>
-                <li class="py-4 flex justify-between"><span>Adega Climatizada</span> <span class="material-symbols-outlined">wine_bar</span></li>
-                <li class="py-4 flex justify-between"><span>Churrasqueira Gourmet</span> <span class="material-symbols-outlined">outdoor_grill</span></li>
-            </ul>
-
-            <h3 class="font-serif text-2xl mb-6">Galeria</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80" class="w-full aspect-square object-cover bg-surface">
-                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80" class="w-full aspect-square object-cover bg-surface">
-                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80" class="w-full aspect-square object-cover bg-surface">
-                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80" class="w-full aspect-square object-cover bg-surface">
-            </div>
-        </div>
-
-        <!-- Sidebar Sticky -->
-        <div>
-            <div class="sticky top-24 bg-surface p-8 border border-outline">
-                <h3 class="font-serif text-2xl mb-2">Agende uma visita</h3>
-                <p class="text-sm text-secondary mb-8">com Lucas Carvalho</p>
-                <form class="space-y-6">
-                    <div>
-                        <input type="text" placeholder="Nome Completo" class="w-full border-b border-outline py-2 outline-none focus:border-primary bg-transparent text-sm">
-                    </div>
-                    <div>
-                        <input type="email" placeholder="E-mail" class="w-full border-b border-outline py-2 outline-none focus:border-primary bg-transparent text-sm">
-                    </div>
-                    <div>
-                        <input type="tel" placeholder="Telefone" class="w-full border-b border-outline py-2 outline-none focus:border-primary bg-transparent text-sm">
-                    </div>
-                    <button class="w-full bg-primary text-white text-xs font-bold py-4 uppercase tracking-widest hover:bg-secondary transition-colors mt-4">
-                        Enviar Mensagem
-                    </button>
-                </form>
-                <div class="my-6 text-center text-xs text-secondary uppercase tracking-widest relative">
-                    <span class="bg-surface px-2 relative z-10">Ou prefere mensagem direta?</span>
-                    <div class="absolute top-1/2 left-0 w-full h-px bg-outline -z-0"></div>
-                </div>
-                <button class="w-full border border-primary text-primary text-xs font-bold py-4 uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">
-                    Chamar no WhatsApp
-                </button>
-            </div>
-        </div>
-    </main>
-
+<body data-pagina="detalhe">
+  <div id="app"></div>
+  <noscript>Ative o JavaScript para explorar os imóveis. <a href="https://wa.me/5561995623957">Fale com Lucas Carvalho pelo WhatsApp</a>.</noscript>
 </body>
-
 </html>

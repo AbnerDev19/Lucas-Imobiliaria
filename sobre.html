@@ -1,108 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sobre | Lucas Carvalho</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        background: "#ffffff",
-                        surface: "#f8f9fa",
-                        primary: "#000000",
-                        secondary: "#666666",
-                        outline: "#e5e5e5"
-                    },
-                    fontFamily: {
-                        serif: ["Playfair Display", "serif"],
-                        sans: ["Plus Jakarta Sans", "sans-serif"],
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conheça o atendimento de Lucas Carvalho, corretor de imóveis no Distrito Federal.">
+  <meta name="theme-color" content="#faf7f1">
+  <link rel="icon" href="./media/icone.png" type="image/png">
+  <title>Sobre Lucas Carvalho | Consultoria Imobiliária</title>
+  <link rel="stylesheet" href="./assets/site.css">
+  <script type="module" src="./assets/site.js"></script>
 </head>
-
-<body class="bg-background text-primary font-sans antialiased">
-
-    <!-- Cabeçalho idêntico à Home (omitido por brevidade, utilize o mesmo da index.html) -->
-
-    <main class="pt-[120px] px-6 md:px-12 max-w-7xl mx-auto pb-24">
-        <!-- Bio Section -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24 items-center">
-            <div class="aspect-[4/3] bg-surface">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&grayscale" class="w-full h-full object-cover grayscale" alt="Lucas Carvalho">
-            </div>
-            <div>
-                <h1 class="font-serif text-5xl mb-6">Quem é Lucas Carvalho</h1>
-                <div class="h-px w-full bg-outline mb-6"></div>
-                <p class="text-secondary mb-4 leading-relaxed">Com mais de uma década de experiência no mercado imobiliário de alto padrão, Lucas Carvalho consolidou sua reputação como um consultor de confiança para investidores exigentes e famílias buscando residências exclusivas.</p>
-                <p class="text-secondary mb-8 leading-relaxed">Sua abordagem une precisão analítica e sensibilidade estética, garantindo que cada transação seja executada com eficiência cirúrgica. Especialista em propriedades arquitetônicas singulares, Lucas oferece um serviço <em>tailor-made</em>                    pautado na discrição e resultados excepcionais.</p>
-                <div class="inline-block border border-primary px-4 py-2 text-xs font-bold uppercase tracking-widest">
-                    CRECI-SP 123456-F
-                </div>
-            </div>
-        </section>
-
-        <!-- Parceiros -->
-        <section class="text-center mb-24">
-            <span class="text-xs font-bold tracking-widest uppercase text-secondary mb-8 block">Parceiros de Desenvolvimento</span>
-            <div class="flex flex-wrap justify-center gap-12 font-serif text-3xl text-secondary">
-                <span>CYRELA</span>
-                <span>FASANO</span>
-                <span>JHSF</span>
-                <span>LUMIÈRE</span>
-            </div>
-        </section>
-
-        <!-- Contato Grid -->
-        <section class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
-            <div class="bg-surface p-10 border border-outline">
-                <h3 class="font-serif text-2xl mb-4">Contato Direto</h3>
-                <p class="text-sm text-secondary mb-8">Disponível para consultas confidenciais e avaliações de portfólio.</p>
-                <ul class="space-y-4 text-sm mb-12">
-                    <li>lucas@carvalho-estate.com</li>
-                    <li>+55 (11) 99999-9999</li>
-                    <li>WhatsApp Business</li>
-                    <li>@lucascarvalho.estate</li>
-                </ul>
-                <div class="text-xs text-secondary uppercase tracking-widest mb-2 font-bold">Escritório (Com Agendamento)</div>
-                <p class="text-sm text-secondary">Av. Brigadeiro Faria Lima, 3000<br>Itaim Bibi, São Paulo - SP</p>
-            </div>
-
-            <div class="border border-outline p-10">
-                <h3 class="font-serif text-2xl mb-8">Envie uma Mensagem</h3>
-                <form class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-bold text-secondary uppercase mb-2">Nome Completo</label>
-                            <input type="text" class="w-full border-b border-outline py-2 outline-none focus:border-primary transition-colors bg-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-secondary uppercase mb-2">Email</label>
-                            <input type="email" class="w-full border-b border-outline py-2 outline-none focus:border-primary transition-colors bg-transparent">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-secondary uppercase mb-2">Telefone</label>
-                        <input type="tel" class="w-full border-b border-outline py-2 outline-none focus:border-primary transition-colors bg-transparent">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-secondary uppercase mb-2">Mensagem / Interesse</label>
-                        <textarea rows="3" class="w-full border-b border-outline py-2 outline-none focus:border-primary transition-colors bg-transparent resize-none"></textarea>
-                    </div>
-                    <button class="bg-primary text-white text-xs font-bold px-8 py-4 uppercase tracking-widest hover:bg-secondary transition-colors mt-4">
-                        Enviar Mensagem
-                    </button>
-                </form>
-            </div>
-        </section>
-    </main>
+<body data-pagina="sobre">
+  <div id="app"></div>
+  <noscript>Ative o JavaScript para explorar os imóveis. <a href="https://wa.me/5561995623957">Fale com Lucas Carvalho pelo WhatsApp</a>.</noscript>
 </body>
-
 </html>
