@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { MessageCircle } from 'lucide-react';
-import '@fontsource-variable/manrope';
-import '@fontsource-variable/fraunces';
-import '@fontsource-variable/fraunces/wght-italic.css';
+import '@fontsource-variable/plus-jakarta-sans';
+import '@fontsource-variable/playfair-display';
+import '@fontsource-variable/playfair-display/wght-italic.css';
 import { Catalogo, Detalhe, Inicio, Sobre } from './Paginas.jsx';
 import { whatsapp } from './contato.js';
 import { Cabecalho, Rodape } from './ui.jsx';
@@ -14,19 +14,32 @@ const pagina = document.body.dataset.pagina || 'inicio';
 const Pagina = paginas[pagina];
 
 function Site() {
+  const [atalhoOculto, setAtalhoOculto] = useState(false);
+
   useEffect(() => {
     if (window.location.hash) {
       const frame = requestAnimationFrame(() => document.getElementById(window.location.hash.slice(1))?.scrollIntoView());
       return () => cancelAnimationFrame(frame);
     }
   }, []);
+
+  useEffect(() => {
+    const principal = document.querySelector('[data-whatsapp-principal]');
+    if (!principal || !('IntersectionObserver' in window)) return;
+    const observador = new IntersectionObserver(([entrada]) => {
+      setAtalhoOculto(entrada.intersectionRatio >= 0.5);
+    }, { threshold: 0.5, rootMargin: '-72px 0px 0px' });
+    observador.observe(principal);
+    return () => observador.disconnect();
+  }, []);
+
   return (
     <>
       <Cabecalho pagina={pagina} />
       <main id="conteudo" tabIndex={-1}><Pagina /></main>
       <Rodape />
       <a className="whatsapp-flutuante" href={whatsapp()} target="_blank" rel="noopener noreferrer"
-        aria-label="Falar com Lucas Carvalho no WhatsApp"><MessageCircle aria-hidden="true" size={25} /></a>
+        aria-label="Falar com Lucas Carvalho no WhatsApp" hidden={atalhoOculto}><MessageCircle aria-hidden="true" size={25} /></a>
     </>
   );
 }

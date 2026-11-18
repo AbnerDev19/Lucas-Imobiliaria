@@ -20,9 +20,10 @@ export function Marca() {
   );
 }
 
-export function WhatsApp({ children = 'Falar no WhatsApp', mensagem, className = '' }) {
+export function WhatsApp({ children = 'Falar no WhatsApp', mensagem, className = '', principal = false }) {
   return (
-    <a className={`botao ${className}`} href={whatsapp(mensagem)} target="_blank" rel="noopener noreferrer">
+    <a className={`botao ${className}`} href={whatsapp(mensagem)} target="_blank" rel="noopener noreferrer"
+      data-whatsapp-principal={principal || undefined}>
       <MessageCircle size={17} aria-hidden="true" />{children}
     </a>
   );
@@ -46,13 +47,13 @@ export function Cabecalho({ pagina }) {
           <a href={rotas.sobre} aria-current={pagina === 'sobre' ? 'page' : undefined}>Sobre</a>
           <a href={rotas.contato}>Contato</a>
         </nav>
-        <WhatsApp className="botao--terracota">WhatsApp</WhatsApp>
+        <WhatsApp className="botao--marinho">WhatsApp</WhatsApp>
       </div>
       <div className="cabecalho-mobile">
         <CardNav logo={<Marca />} logoHref={rotas.inicio} logoAlt="Lucas Carvalho – página inicial"
           items={navItems} theme="light" surface="solid" cardHeight={106} maxWidth={720}
           cardEffect="rise" open={menuAberto} onOpenChange={setMenuAberto} intro={false}
-          menuLabel={false} ariaLabel="Menu principal" accentColor="#9e533a"
+          menuLabel={false} ariaLabel="Menu principal" accentColor="#72521f"
           cta={{ label: 'Falar no WhatsApp', href: whatsapp(), target: '_blank' }} />
       </div>
     </header>
@@ -70,14 +71,14 @@ export function CartaoImovel({ imovel }) {
       <a href={linkImovel(imovel.id)} className="cartao-link" aria-label={`Ver detalhes: ${imovel.nome}`}>
         <div className={`cartao-foto cartao-foto--${imovel.id}`}>
           <img src={capa.image.replace('.webp', '-card.webp')} alt={`${capa.label} de ${imovel.nome}`} loading="lazy" decoding="async" />
-          <span className="cartao-tipo">Apartamento</span>
+          <span className="cartao-tipo">{capa.tipo}</span>
         </div>
         <div className="cartao-dados">
           <div className="local"><MapPin size={14} aria-hidden="true" />{imovel.regiao}, DF</div>
           <h3>{imovel.nome}</h3>
           <div className="cartao-rodape">
             <span><BedDouble size={17} aria-hidden="true" />{faixaQuartos(imovel)}</span>
-            <span className="cartao-seta"><ArrowUpRight size={17} aria-hidden="true" /></span>
+            <span className="cartao-seta" aria-hidden="true">Ver imóvel <ArrowUpRight size={15} /></span>
           </div>
         </div>
       </a>
