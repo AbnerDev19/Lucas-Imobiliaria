@@ -1,15 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  ArrowDown, ArrowLeft, ArrowUpRight, BedDouble, Building2, Car, Check, ChevronLeft,
-  ChevronRight, MapPin, Maximize2, Ruler, Search, X
+  ArrowDown, ArrowLeft, ArrowUpRight, BedDouble, Building2, Check, ChevronLeft,
+  ChevronRight, MapPin, Maximize2, Search, X
 } from 'lucide-react';
 import AccordionGallery from './react-bits/AccordionGallery.jsx';
 import AnimatedContent from './react-bits/AnimatedContent.jsx';
+import AnimatedList from './react-bits/AnimatedList.jsx';
+import BranchedMenu from './react-bits/BranchedMenu.jsx';
+import ClickSpark from './react-bits/ClickSpark.jsx';
 import GradientText from './react-bits/GradientText.jsx';
 import { Contato, Especialidades } from './Atendimento.jsx';
-import { destaques, faixaQuartos, fases, imoveis, linkImovel, normalizarBusca, opcoesQuartos, quantidadeVagas, regioes } from './catalogo.js';
-import { depoimentos, fotoLucas, mensagemImovel } from './contato.js';
-import { CartaoImovel, Chips, LinkSeta, TituloSecao, WhatsApp, rotas, useMedia } from './ui.jsx';
+import { destaques, faixaQuartos, imoveis, linkImovel, normalizarBusca, regioes } from './catalogo.js';
+import { mensagemImovel } from './contato.js';
+import { CartaoImovel, LinkSeta, TituloSecao, WhatsApp, rotas, useMedia } from './ui.jsx';
 import { useMovimentoImagem } from './useMovimentoImagem.js';
 
 const slides = [
@@ -72,10 +75,11 @@ function Hero() {
               <span>{foto.tipo}</span>
               <strong>{foto.nome}<ArrowUpRight size={14} aria-hidden="true" /></strong>
             </a>
-            <div className="hero-controles">
+            <ClickSpark sparkColor="#ebd0a2" sparkCount={4} sparkSize={6} sparkRadius={14} duration={290}
+              className="hero-controles" style={{ width: 'auto', height: 'auto' }}>
               <button type="button" onClick={() => mudar(-1)} aria-label="Imagem anterior"><ChevronLeft size={19} /></button>
               <button type="button" onClick={() => mudar(1)} aria-label="Próxima imagem"><ChevronRight size={19} /></button>
-            </div>
+            </ClickSpark>
           </div>
         </div>
         <a href="#destaques" className="descer"><ArrowDown size={15} aria-hidden="true" /> Ver destaques</a>
@@ -119,56 +123,24 @@ export function Inicio() {
   );
 }
 
-const filtrosVazios = { busca: '', regiao: '', quartos: '', fase: '' };
-const chipsRegiao = [{ valor: '', rotulo: 'Todas' }, ...regioes.map(regiao => ({ valor: regiao, rotulo: regiao }))];
-const chipsQuartos = [{ valor: '', rotulo: 'Todos' }, ...opcoesQuartos.map(quartos => ({
-  valor: quartos,
-  rotulo: quartos === '1' ? '1 quarto' : `${quartos} quartos`
-}))];
-const chipsFase = [{ valor: '', rotulo: 'Todas' }, ...fases.map(fase => ({ valor: fase, rotulo: fase }))];
-
-function lerFiltros(parametros) {
-  const regiao = parametros.get('regiao');
-  const quartos = parametros.get('quartos');
-  const fase = parametros.get('fase');
-  return {
-    busca: parametros.get('busca') ?? '',
-    regiao: regioes.includes(regiao) ? regiao : '',
-    quartos: opcoesQuartos.includes(quartos) ? quartos : '',
-    fase: fases.includes(fase) ? fase : ''
-  };
-}
-
-function consultaFiltros(filtros) {
-  return new URLSearchParams(Object.entries(filtros).filter(([, valor]) => valor));
-}
+const menuRegioes = [{
+  label: 'Regiões do DF',
+  children: [{ value: '', label: 'Todas as regiões' }, ...regioes.map(regiao => ({ value: regiao, label: regiao }))]
+}];
 
 export function Catalogo() {
-  const [filtros, setFiltros] = useState(() => lerFiltros(new URLSearchParams(window.location.search)));
-  const { busca, regiao, quartos, fase } = filtros;
-  const campoBusca = useRef(null);
-  const consulta = consultaFiltros(filtros);
-  const alterar = campo => valor => setFiltros(atuais => ({ ...atuais, [campo]: valor }));
-  function limpar() {
-    setFiltros(filtrosVazios);
-    campoBusca.current?.focus();
-  }
+  const [busca, setBusca] = useState('');
+  const [regiao, setRegiao] = useState('');
+  const [quartos, setQuartos] = useState('');
+  const [menuKey, setMenuKey] = useState(0);
 
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    Object.entries(filtros).forEach(([campo, valor]) => {
-      if (valor) url.searchParams.set(campo, valor);
-      else url.searchParams.delete(campo);
-    });
-    if (url.href !== window.location.href) window.history.replaceState(window.history.state, '', url);
-  }, [filtros]);
-
-  const palavras = normalizarBusca(busca).split(/\s+/);
+  const termo = normalizarBusca(busca);
   const resultados = imoveis.filter(imovel => {
     const texto = normalizarBusca(`${imovel.nome} ${imovel.regiao} Brasília DF`);
     return (!regiao || imovel.regiao === regiao) && (!quartos || imovel.quartos.includes(Number(quartos))) &&
-      (!fase || imovel.fase === fase) && palavras.every(palavra => texto.includes(palavra));
+      termo.split(/\s+/).every(palavra => texto.includes(palavra));
   });
+  const limpar = () => { setBusca(''); setQuartos(''); setRegiao(''); setMenuKey(atual => atual + 1); };
 
   return (
     <>
@@ -176,18 +148,23 @@ export function Catalogo() {
         <div className="moldura">
           <span className="etiqueta"><span />Distrito Federal</span>
           <h1>Encontre seu imóvel.</h1>
-          <p>Compare os empreendimentos e fale com o Lucas sobre valores e disponibilidade.</p>
+          <p>Compare empreendimentos por região e número de quartos. Consulte Lucas para saber valores e disponibilidade.</p>
         </div>
       </section>
       <section className="moldura catalogo" aria-label="Catálogo de imóveis">
-        <aside className="filtros" aria-label="Filtros do catálogo">
+        <aside className="filtros">
           <label className="campo" htmlFor="busca">Buscar imóvel</label>
-          <div className="busca"><Search size={17} aria-hidden="true" /><input id="busca" ref={campoBusca} type="search" value={busca}
-            onChange={evento => alterar('busca')(evento.target.value)} placeholder="Nome ou região" /></div>
-          <Chips titulo="Região" opcoes={chipsRegiao} valor={regiao} onChange={alterar('regiao')} />
-          <Chips titulo="Quartos" opcoes={chipsQuartos} valor={quartos} onChange={alterar('quartos')} />
-          {fases.length > 0 && <Chips titulo="Fase" opcoes={chipsFase} valor={fase} onChange={alterar('fase')} />}
-          {consulta.size > 0 && <button type="button" className="limpar" onClick={limpar}><X size={15} aria-hidden="true" /> Limpar filtros</button>}
+          <div className="busca"><Search size={17} aria-hidden="true" /><input id="busca" type="search" value={busca}
+            onChange={evento => setBusca(evento.target.value)} placeholder="Nome ou região" /></div>
+          <div className="menu-regiao">
+            <BranchedMenu key={menuKey} items={menuRegioes} onSelect={setRegiao} width={236}
+              color="#293b52" accentColor="#72521f" lineColor="#c4d0df" rowHeight={38} fontSize={14} />
+          </div>
+          <label className="campo" htmlFor="quartos">Quartos</label>
+          <select id="quartos" value={quartos} onChange={evento => setQuartos(evento.target.value)}>
+            <option value="">Qualquer quantidade</option><option value="2">2 quartos</option><option value="3">3 quartos</option>
+          </select>
+          {(busca || quartos || regiao) && <button type="button" className="limpar" onClick={limpar}><X size={15} /> Limpar filtros</button>}
         </aside>
         <div className="resultados">
           <div className="resultados-topo">
@@ -195,7 +172,7 @@ export function Catalogo() {
             <p role="status">{resultados.length} {resultados.length === 1 ? 'imóvel encontrado' : 'imóveis encontrados'}</p>
           </div>
           {resultados.length ? <div className="grade-imoveis">
-            {resultados.map(imovel => <CartaoImovel key={imovel.id} imovel={imovel} consulta={consulta} />)}
+            {resultados.map(imovel => <CartaoImovel key={imovel.id} imovel={imovel} />)}
           </div> : <div className="resultado-vazio"><Search size={26} aria-hidden="true" />
             <h3>Nenhum imóvel encontrado</h3><p>Tente outro nome ou altere os filtros.</p>
             <button className="botao botao--contorno" type="button" onClick={limpar}>Limpar filtros</button>
@@ -222,7 +199,7 @@ function Galeria({ imovel }) {
     <section className="galeria-imovel" aria-labelledby="titulo-galeria">
       <div className="secao-topo">
         <TituloSecao etiqueta="Fotos e perspectivas" id="titulo-galeria">Galeria do imóvel</TituloSecao>
-        <button type="button" className="link-seta galeria-expandir" onClick={abrir}><Maximize2 size={17} aria-hidden="true" /> Tela cheia</button>
+        <button type="button" className="link-seta" onClick={abrir}><Maximize2 size={17} aria-hidden="true" /> Tela cheia</button>
       </div>
       <AccordionGallery key={String(mobile)} items={imovel.fotos} defaultIndex={ativa} activeIndex={ativa}
         onActiveChange={setAtiva} orientation={mobile ? 'vertical' : 'horizontal'} height={mobile ? 245 : 386}
@@ -249,16 +226,19 @@ function Galeria({ imovel }) {
   );
 }
 
-function Relacionados({ imovel, consulta }) {
+function Relacionados({ imovel }) {
   const proximos = imoveis.filter(item => item.id !== imovel.id)
     .sort((a, b) => Number(b.regiao === imovel.regiao) - Number(a.regiao === imovel.regiao))
-    .slice(0, 3);
+    .slice(0, 3).map(item => ({
+      id: item.id, image: item.fotos[0].image.replace('.webp', '-card.webp'),
+      title: item.nome, description: item.regiao, meta: faixaQuartos(item)
+    }));
   return (
-    <section className="relacionados" aria-labelledby="titulo-relacionados">
-      <TituloSecao etiqueta="Explore o catálogo" id="titulo-relacionados">Outros imóveis</TituloSecao>
-      <div className="grade-imoveis">
-        {proximos.map(item => <CartaoImovel key={item.id} imovel={item} consulta={consulta} />)}
-      </div>
+    <section className="relacionados">
+      <TituloSecao etiqueta="Explore o catálogo">Outros imóveis</TituloSecao>
+      <AnimatedList items={proximos} width="100%" maxHeight={400} theme="light" frame={false}
+        accentColor="#72521f" showGradients={false} selectOnHover={false} ariaLabel="Outros imóveis"
+        onItemSelect={item => window.location.assign(linkImovel(item.id))} />
     </section>
   );
 }
@@ -266,8 +246,6 @@ function Relacionados({ imovel, consulta }) {
 export function Detalhe() {
   const parametros = new URLSearchParams(window.location.search);
   const id = parametros.get('imovel');
-  const consulta = consultaFiltros(lerFiltros(parametros));
-  const linkCatalogo = consulta.size ? `${rotas.imoveis}?${consulta}` : rotas.imoveis;
   const imovel = id === null ? destaques[0] : imoveis.find(item => item.id === id);
   useEffect(() => {
     document.title = imovel ? `${imovel.nome} | Lucas Carvalho` : 'Imóvel não encontrado | Lucas Carvalho';
@@ -277,25 +255,18 @@ export function Detalhe() {
     <section className="moldura pagina-vazia">
       <h1>Imóvel não encontrado.</h1>
       <p>Veja outros empreendimentos no catálogo.</p>
-      <LinkSeta href={linkCatalogo}>Voltar aos imóveis</LinkSeta>
+      <LinkSeta href={rotas.imoveis}>Voltar aos imóveis</LinkSeta>
     </section>
   );
 
   return (
     <div className="moldura detalhe">
-      <a className="voltar" href={linkCatalogo}><ArrowLeft size={16} aria-hidden="true" /> Voltar aos imóveis</a>
+      <a className="voltar" href={rotas.imoveis}><ArrowLeft size={16} /> Voltar aos imóveis</a>
       <div className="detalhe-topo">
         <div className="detalhe-titulo">
           <span className="etiqueta"><span />Apartamento</span>
           <h1>{imovel.nome}</h1>
-          <div className="detalhe-fatos">
-            <span><MapPin size={17} aria-hidden="true" />{imovel.regiao}, DF</span>
-            <span><BedDouble size={18} aria-hidden="true" />{faixaQuartos(imovel)}</span>
-            {imovel.metragem && <span><Ruler size={17} aria-hidden="true" />{imovel.metragem}</span>}
-            {imovel.vagas != null && <span><Car size={17} aria-hidden="true" />{quantidadeVagas(imovel.vagas)}</span>}
-            {imovel.fase && <span className="detalhe-fase">{imovel.fase}</span>}
-            {imovel.aPartirDe && <span className="preco-imovel">A partir de <strong>{imovel.aPartirDe}</strong></span>}
-          </div>
+          <div className="detalhe-fatos"><span><MapPin size={17} />{imovel.regiao}, DF</span><span><BedDouble size={18} />{faixaQuartos(imovel)}</span></div>
         </div>
         <ImagemImovel imovel={imovel} />
       </div>
@@ -312,7 +283,7 @@ export function Detalhe() {
           <WhatsApp className="botao--marinho" mensagem={mensagemImovel(imovel.nome)} principal />
         </aside>
       </div>
-      <Relacionados imovel={imovel} consulta={consulta} />
+      <Relacionados imovel={imovel} />
     </div>
   );
 }
@@ -328,24 +299,11 @@ export function Sobre() {
           <WhatsApp className="botao--marinho" principal />
           <LinkSeta href={rotas.imoveis} className="sobre-link">Conhecer os imóveis</LinkSeta>
         </AnimatedContent>
-        {fotoLucas
-          ? <figure className="sobre-retrato"><img src={fotoLucas} alt="Lucas Carvalho" /></figure>
-          : <figure><img src="./media/aurora-4.webp" alt="Perspectiva das torres do Alto da Aurora" />
-              <figcaption><Building2 size={16} aria-hidden="true" /> Alto da Aurora, Sobradinho · Perspectiva ilustrativa</figcaption>
-            </figure>}
+        <figure><img src="./media/aurora-4.webp" alt="Perspectiva das torres do Alto da Aurora" />
+          <figcaption><Building2 size={16} /> Alto da Aurora, Sobradinho · Perspectiva ilustrativa</figcaption>
+        </figure>
       </section>
       <Especialidades naPaginaSobre />
-      {depoimentos.length > 0 && <section className="moldura secao depoimentos" aria-labelledby="titulo-depoimentos">
-        <TituloSecao etiqueta="Atendimento" id="titulo-depoimentos">Depoimentos</TituloSecao>
-        <div className="grade-imoveis">
-          {depoimentos.map(({ autor, texto }) => (
-            <figure key={`${autor}-${texto}`}>
-              <blockquote><p>{texto}</p></blockquote>
-              {autor && <figcaption>{autor}</figcaption>}
-            </figure>
-          ))}
-        </div>
-      </section>}
       <Contato />
     </>
   );

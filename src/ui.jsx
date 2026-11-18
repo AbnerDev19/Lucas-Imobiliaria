@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ArrowUpRight, BedDouble, Building2, Car, MapPin, Menu, MessageCircle, Ruler, X } from 'lucide-react';
-import { faixaQuartos, linkImovel, quantidadeVagas } from './catalogo.js';
-import { creci, telefone, whatsapp } from './contato.js';
+import { useEffect, useState } from 'react';
+import { ArrowRight, ArrowUpRight, BedDouble, Building2, MapPin, MessageCircle } from 'lucide-react';
+import CardNav from './react-bits/CardNav.jsx';
+import { faixaQuartos, linkImovel } from './catalogo.js';
+import { telefone, whatsapp } from './contato.js';
 
 export const rotas = {
   inicio: './index.html',
@@ -14,7 +15,7 @@ export function Marca() {
   return (
     <span className="marca">
       <span className="marca-icone"><Building2 aria-hidden="true" strokeWidth={1.4} /></span>
-      <span className="marca-texto"><strong>Lucas Carvalho</strong>{' '}<small>Consultoria Imobiliária</small></span>
+      <span className="marca-texto"><strong>Lucas Carvalho</strong><small>Consultoria Imobiliária</small></span>
     </span>
   );
 }
@@ -28,60 +29,34 @@ export function WhatsApp({ children = 'Falar no WhatsApp', mensagem, className =
   );
 }
 
-const linksMenu = [
-  ['Início', rotas.inicio, ['inicio']],
-  ['Imóveis', rotas.imoveis, ['imoveis', 'detalhe']],
-  ['Sobre', rotas.sobre, ['sobre']],
-  ['Contato', rotas.contato, []]
+const navItems = [
+  { label: 'Imóveis', links: [{ label: 'Início', href: rotas.inicio }, { label: 'Ver empreendimentos', href: rotas.imoveis }] },
+  { label: 'Atendimento', links: [{ label: 'Sobre o Lucas', href: rotas.sobre }, { label: 'Entrar em contato', href: rotas.contato }] }
 ];
 
 export function Cabecalho({ pagina }) {
   const [menuAberto, setMenuAberto] = useState(false);
-  const botaoMenu = useRef(null);
-
   return (
-    <header className="cabecalho"
-      onBlur={evento => {
-        if (menuAberto && !evento.currentTarget.contains(evento.relatedTarget)) setMenuAberto(false);
-      }}
-      onKeyDown={evento => {
-        if (evento.key !== 'Escape' || !menuAberto) return;
-        evento.preventDefault();
-        setMenuAberto(false);
-        botaoMenu.current.focus();
-      }}>
+    <header className="cabecalho">
       <a href="#conteudo" className="pular">Pular para o conteúdo</a>
-      <div className="cabecalho-barra moldura">
-        <a href={rotas.inicio} aria-label="Lucas Carvalho Consultoria Imobiliária – página inicial"><Marca /></a>
-        <button type="button" className="botao-menu" ref={botaoMenu} aria-controls="menu-principal"
-          aria-expanded={menuAberto} aria-label={menuAberto ? 'Fechar menu' : 'Abrir menu'}
-          onClick={() => setMenuAberto(aberto => !aberto)}>
-          {menuAberto ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
-        </button>
-        <nav id="menu-principal" className="cabecalho-nav" aria-label="Menu principal" data-aberto={menuAberto}>
-          {linksMenu.map(([titulo, href, paginas]) => (
-            <a key={titulo} href={href} aria-current={paginas.includes(pagina) ? 'page' : undefined}
-              onClick={() => setMenuAberto(false)}>{titulo}</a>
-          ))}
-          <WhatsApp className="botao--marinho cabecalho-whatsapp-mobile" />
+      <div className="cabecalho-desktop moldura">
+        <a href={rotas.inicio} aria-label="Lucas Carvalho – página inicial"><Marca /></a>
+        <nav aria-label="Menu principal">
+          <a href={rotas.inicio} aria-current={pagina === 'inicio' ? 'page' : undefined}>Início</a>
+          <a href={rotas.imoveis} aria-current={['imoveis', 'detalhe'].includes(pagina) ? 'page' : undefined}>Imóveis</a>
+          <a href={rotas.sobre} aria-current={pagina === 'sobre' ? 'page' : undefined}>Sobre</a>
+          <a href={rotas.contato}>Contato</a>
         </nav>
-        <WhatsApp className="botao--marinho cabecalho-whatsapp">WhatsApp</WhatsApp>
+        <WhatsApp className="botao--marinho">WhatsApp</WhatsApp>
+      </div>
+      <div className="cabecalho-mobile">
+        <CardNav logo={<Marca />} logoHref={rotas.inicio} logoAlt="Lucas Carvalho – página inicial"
+          items={navItems} theme="light" surface="solid" cardHeight={106} maxWidth={720}
+          cardEffect="rise" open={menuAberto} onOpenChange={setMenuAberto} intro={false}
+          menuLabel={false} ariaLabel="Menu principal" accentColor="#72521f"
+          cta={{ label: 'Falar no WhatsApp', href: whatsapp(), target: '_blank' }} />
       </div>
     </header>
-  );
-}
-
-export function Chips({ titulo, opcoes, valor, onChange }) {
-  return (
-    <fieldset className="grupo-chips">
-      <legend>{titulo}</legend>
-      <div className="lista-chips">
-        {opcoes.map(({ valor: opcao, rotulo }) => (
-          <button key={opcao} type="button" className="chip" aria-pressed={valor === opcao}
-            onClick={() => onChange(opcao)}>{rotulo}</button>
-        ))}
-      </div>
-    </fieldset>
   );
 }
 
@@ -89,29 +64,21 @@ export function TituloSecao({ etiqueta, children, id }) {
   return <div className="titulo-secao"><span className="etiqueta"><span />{etiqueta}</span><h2 id={id}>{children}</h2></div>;
 }
 
-export function CartaoImovel({ imovel, consulta }) {
+export function CartaoImovel({ imovel }) {
   const capa = imovel.fotos[0];
   return (
     <article className="cartao">
-      <a href={linkImovel(imovel.id, consulta)} className="cartao-link">
+      <a href={linkImovel(imovel.id)} className="cartao-link" aria-label={`Ver detalhes: ${imovel.nome}`}>
         <div className={`cartao-foto cartao-foto--${imovel.id}`}>
-          <img src={capa.image.replace('.webp', '-card.webp')} alt="" loading="lazy" decoding="async" />
-          <div className="cartao-selos">
-            {imovel.fase && <span className="cartao-tipo cartao-fase">{imovel.fase}</span>}
-            <span className="cartao-tipo">{capa.tipo}</span>
-          </div>
+          <img src={capa.image.replace('.webp', '-card.webp')} alt={`${capa.label} de ${imovel.nome}`} loading="lazy" decoding="async" />
+          <span className="cartao-tipo">{capa.tipo}</span>
         </div>
         <div className="cartao-dados">
           <div className="local"><MapPin size={14} aria-hidden="true" />{imovel.regiao}, DF</div>
           <h3>{imovel.nome}</h3>
           <div className="cartao-rodape">
-            <div className="cartao-fatos">
-              <span><BedDouble size={17} aria-hidden="true" />{faixaQuartos(imovel)}</span>
-              {imovel.metragem && <span><Ruler size={17} aria-hidden="true" />{imovel.metragem}</span>}
-              {imovel.vagas != null && <span><Car size={17} aria-hidden="true" />{quantidadeVagas(imovel.vagas)}</span>}
-            </div>
-            {imovel.aPartirDe && <span className="preco-imovel">A partir de <strong>{imovel.aPartirDe}</strong></span>}
-            <span className="cartao-seta">Ver imóvel <ArrowUpRight size={15} aria-hidden="true" /></span>
+            <span><BedDouble size={17} aria-hidden="true" />{faixaQuartos(imovel)}</span>
+            <span className="cartao-seta" aria-hidden="true">Ver imóvel <ArrowUpRight size={15} /></span>
           </div>
         </div>
       </a>
@@ -132,7 +99,7 @@ export function Rodape() {
             <MessageCircle aria-hidden="true" size={17} />{telefone}<ArrowUpRight aria-hidden="true" size={14} />
           </a>
         </div>
-        <div className="rodape-base"><span>© {new Date().getFullYear()} Lucas Carvalho</span><span>Brasília · Distrito Federal</span>{creci && <span>{creci}</span>}</div>
+        <div className="rodape-base"><span>© {new Date().getFullYear()} Lucas Carvalho</span><span>Brasília · Distrito Federal</span></div>
       </div>
     </footer>
   );
